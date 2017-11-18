@@ -19,6 +19,7 @@
       "error",
       "global"
     ],
-    "curly": "warn"
+    "curly": "warn",
+    "react/jsx-filename-extension": false
   }
 }
