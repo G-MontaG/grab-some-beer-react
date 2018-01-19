@@ -20,8 +20,11 @@ export function searchFoursquare(params) {
     });
 }
 
-export function searchHui() {
-  axiosInstance.get('/user?ID=12345')
+export function searchGooglePlaces(params) {
+  axiosInstance.get(`/search-google-places?v=${FOURSQUARE_VERSION}
+                     &location=${params.latitude},${params.longitude}
+                     &radius=${params.radius || '500'}
+                     &language=ru`)
     .then((response) => {
       console.log(response);
     })
