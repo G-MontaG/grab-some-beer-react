@@ -9,27 +9,23 @@ const axiosInstance = axios.create({
 const FOURSQUARE_VERSION = '20180101';
 
 export function searchFoursquare(params) {
-  axiosInstance
-    .get(
-      `/search-foursquare?v=${FOURSQUARE_VERSION}&ll=${params.latitude},${
-        params.longitude
-      }&radius=${params.radius || '500'}`,
-    )
-    .then(response => {
+  axiosInstance.get(`/search-foursquare?v=${FOURSQUARE_VERSION}
+                     &ll=${params.latitude},${params.longitude}
+                     &radius=${params.radius || '500'}`)
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 }
 
 export function searchHui() {
-  axiosInstance
-    .get('/user?ID=12345')
-    .then(response => {
+  axiosInstance.get('/user?ID=12345')
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 }
