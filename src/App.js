@@ -5,6 +5,7 @@ import Switch from 'react-router-dom/Switch';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Home from './screens/Home';
 import './App.css';
+import './redux/store';
 
 function App() {
   return (
