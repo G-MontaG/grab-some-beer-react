@@ -32,7 +32,7 @@ class Home extends React.Component {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Button raised color="primary" onClick={this.handleStartSearch}>
+          <Button raised color="accent" onClick={this.handleStartSearch}>
             Grab some beer
           </Button>
         </Grid>
