@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import { searchFoursquare } from '../api/api.service';
+import { searchFoursquare } from '../redux/actions/api.actions';
 
 const styles = () => ({
   root: {
