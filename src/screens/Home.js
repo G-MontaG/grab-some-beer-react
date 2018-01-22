@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
-import Snackbar from 'material-ui/Snackbar';
 import { withStyles } from 'material-ui/styles';
 import { searchFoursquareCreator } from '../redux/actions/api.actions';
+import { errorCreator } from '../redux/actions/error.actions';
 
 const styles = () => ({
   root: {
@@ -13,15 +13,12 @@ const styles = () => ({
 });
 
 class Home extends React.Component {
-  state = {
-    snackbarOpen: false,
-  };
-
   handleStartSearch = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.sendSearchAction, this.handleUserBlockGeolocationRequest);
+      navigator.geolocation.getCurrentPosition(this.sendSearchAction,
+        () => errorCreator("Without geolocation we doesn't know where to search. Sorry :("));
     } else {
-      this.handleUserBlockGeolocationRequest();
+      errorCreator("Your browser doesn't support geolocation. Sorry :(");
     }
   };
 
@@ -32,18 +29,8 @@ class Home extends React.Component {
     });
   };
 
-  handleUserBlockGeolocationRequest = () => {
-    this.setState({ snackbarOpen: true });
-  };
-
-  handleSnackbarClose = () => {
-    this.setState({ snackbarOpen: false });
-  };
-
-
   render() {
     const { classes } = this.props;
-    const { snackbarOpen } = this.state;
 
     return (
       <Grid container className={classes.root}>
@@ -51,19 +38,6 @@ class Home extends React.Component {
           <Button raised color="accent" onClick={this.handleStartSearch}>
             Grab some beer
           </Button>
-          <Snackbar
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-            }}
-            autoHideDuration={2000}
-            open={snackbarOpen}
-            onClose={this.handleSnackbarClose}
-            SnackbarContentProps={{
-              'aria-describedby': 'message-id',
-            }}
-            message={<span id="message-id">Without geolocation we doesn't know where to search. Sorry :(</span>}
-          />
         </Grid>
       </Grid>
     );
