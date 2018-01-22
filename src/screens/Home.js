@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import { searchFoursquareCreator } from '../redux/actions/api.actions';
+import { searchFoursquareCreator, searchGooglePlacesCreator } from '../redux/actions/api.actions';
 import { errorCreator } from '../redux/actions/error.actions';
 
 const styles = () => ({
@@ -27,6 +27,10 @@ class Home extends React.Component {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     });
+    searchGooglePlacesCreator({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    })
   };
 
   render() {

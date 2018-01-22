@@ -9,4 +9,19 @@ export const searchFoursquareAction = payload => ({
   payload,
 });
 
-export const searchFoursquareCreator = payload => store.dispatch(searchFoursquareAction(payload));
+export const searchFoursquareCreator = payload => store.dispatch(
+  searchFoursquareAction(payload)
+);
+
+export const SEARCH_GOOGLE_PLACES = 'SEARCH_GOOGLE_PLACES';
+export const SEARCH_GOOGLE_PLACES_SUCCEEDED = 'SEARCH_GOOGLE_PLACES_SUCCEEDED';
+export const SEARCH_GOOGLE_PLACES_FAILED = 'SEARCH_GOOGLE_PLACES_FAILED';
+
+export const searchGooglePlacesAction = payload => ({
+  type: SEARCH_GOOGLE_PLACES,
+  payload,
+});
+
+export const searchGooglePlacesCreator = payload => store.dispatch(
+  searchGooglePlacesAction(payload)
+);

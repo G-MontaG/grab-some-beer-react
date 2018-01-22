@@ -12,6 +12,6 @@ export function searchFoursquareRequest(params) {
   return axiosInstance.get(`/search-foursquare?v=${FOURSQUARE_VERSION}&ll=${params.latitude},${params.longitude}&radius=${params.radius || '500'}`);
 }
 
-export function searchGooglePlacesRequest(params = { latitude: '0', longitude: '0', radius: '500' }) {
-  return axiosInstance.get(`/search-google-places?v=${FOURSQUARE_VERSION}&location=${params.latitude.toString()},${params.longitude.toString()}&radius=${params.radius.toString()}&language=ru`);
+export function searchGooglePlacesRequest(params) {
+  return axiosInstance.get(`/search-google-places?v=${FOURSQUARE_VERSION}&location=${params.latitude},${params.longitude}&radius=${params.radius || '500'}&language=ru`);
 }
