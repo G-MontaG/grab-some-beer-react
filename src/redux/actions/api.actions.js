@@ -25,3 +25,16 @@ export const searchGooglePlacesAction = payload => ({
 export const searchGooglePlacesCreator = payload => store.dispatch(
   searchGooglePlacesAction(payload)
 );
+
+export const SEARCH_FACEBOOK_PLACES = 'SEARCH_FACEBOOK_PLACES';
+export const SEARCH_FACEBOOK_PLACES_SUCCEEDED = 'SEARCH_FACEBOOK_PLACES_SUCCEEDED';
+export const SEARCH_FACEBOOK_PLACES_FAILED = 'SEARCH_FACEBOOK_PLACES_FAILED';
+
+export const searchFacebookPlacesAction = payload => ({
+  type: SEARCH_FACEBOOK_PLACES,
+  payload,
+});
+
+export const searchFacebookPlacesCreator = payload => store.dispatch(
+  searchFacebookPlacesAction(payload)
+);
