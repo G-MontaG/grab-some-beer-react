@@ -1,0 +1,7 @@
+.HomeComponent {
+  text-align: center;
+  & > div {
+    height: 100vh;
+    background-image: url(../assets/images/food.png);
+  }
+}

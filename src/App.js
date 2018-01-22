@@ -5,6 +5,7 @@ import Switch from 'react-router-dom/Switch';
 import Snackbar from 'material-ui/Snackbar';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Home from './screens/Home';
+import List from './screens/List';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -37,6 +38,7 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/results" component={List} />
             </Switch>
           </BrowserRouter>
         </div>

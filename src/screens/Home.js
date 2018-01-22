@@ -8,6 +8,7 @@ import {
   searchGooglePlacesCreator
 } from '../redux/actions/api.actions';
 import { errorCreator } from '../redux/actions/error.actions';
+import './Home.css';
 
 const styles = () => ({
   root: {
@@ -44,13 +45,15 @@ class Home extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Grid container className={classes.root}>
-        <Grid item xs={12}>
-          <Button raised color="accent" onClick={this.handleStartSearch}>
-            Grab some beer
-          </Button>
+      <div className="HomeComponent">
+        <Grid container className={classes.root}>
+          <Grid item xs={12}>
+            <Button raised color="accent" onClick={this.handleStartSearch}>
+              Grab some beer
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
