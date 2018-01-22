@@ -9,4 +9,4 @@ export const searchFoursquareAction = payload => ({
   payload,
 });
 
-export const searchFoursquare = payload => store.dispatch(searchFoursquareAction(payload));
+export const searchFoursquareCreator = payload => store.dispatch(searchFoursquareAction(payload));
