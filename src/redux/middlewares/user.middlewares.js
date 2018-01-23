@@ -19,7 +19,6 @@ export function* setUserLocationMiddleware(action) {
 
   try {
     const result = yield location;
-    console.log(result);
     yield put({
       type: SET_USER_LOCATION_SUCCEEDED,
       payload: { latitude: result.coords.latitude, longitude: result.coords.longitude },
