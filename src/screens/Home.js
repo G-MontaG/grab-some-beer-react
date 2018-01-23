@@ -7,8 +7,9 @@ import {
   searchFacebookPlacesCreator, searchFoursquareCreator,
   searchGooglePlacesCreator
 } from '../redux/actions/api.actions';
-import { errorCreator } from '../redux/actions/error.actions';
 import './Home.css';
+import { setUserLocationCreator } from '../redux/actions/user.actions';
+import { connect } from 'react-redux';
 
 const styles = () => ({
   root: {
@@ -18,28 +19,27 @@ const styles = () => ({
 
 class Home extends React.Component {
   handleStartSearch = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.sendSearchAction,
-        () => errorCreator("Without geolocation we doesn't know where to search. Sorry :("));
-    } else {
-      errorCreator("Your browser doesn't support geolocation. Sorry :(");
-    }
+    setUserLocationCreator();
   };
 
-  sendSearchAction = (position) => {
-    searchFoursquareCreator({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    });
-    searchGooglePlacesCreator({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    });
-    searchFacebookPlacesCreator({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    })
-  };
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.user && nextProps.user.position) {
+      let position = nextProps.user.position;
+      searchFoursquareCreator({
+        latitude: position.latitude,
+        longitude: position.longitude,
+      });
+      searchGooglePlacesCreator({
+        latitude: position.latitude,
+        longitude: position.longitude,
+      });
+      searchFacebookPlacesCreator({
+        latitude: position.latitude,
+        longitude: position.longitude,
+      });
+      nextProps.history.push('results');
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -62,4 +62,6 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Home);
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(withStyles(styles)(Home));
