@@ -47,7 +47,7 @@ class App extends React.Component {
             vertical: 'top',
             horizontal: 'right',
           }}
-          autoHideDuration={2000}
+          autoHideDuration={4000}
           open={snackbarOpen}
           onClose={this.handleSnackbarClose}
           SnackbarContentProps={{
