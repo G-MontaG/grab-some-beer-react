@@ -20,14 +20,13 @@ class Home extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if(nextProps.user && nextProps.user.position) {
       let position = nextProps.user.position;
       searchCreator({
         latitude: position.latitude,
         longitude: position.longitude,
       });
-      // nextProps.history.push('results');
+      nextProps.history.push('results');
     }
   }
 
@@ -54,4 +53,6 @@ Home.propTypes = {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(withStyles(styles)(Home));
+const HomeWithStyles = withStyles(styles)(Home);
+
+export default connect(mapStateToProps)(HomeWithStyles);

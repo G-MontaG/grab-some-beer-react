@@ -6,7 +6,7 @@ import {
   SEARCH_GOOGLE_PLACES_SUCCEEDED, SEARCH_START,
 } from '../actions/api.actions';
 
-export default function apiReducers(state = {}, action) {
+export default function apiReducers(state = { isLoading: false }, action) {
   switch (action.type) {
     case SEARCH_START:
       return Object.assign({}, state, {
