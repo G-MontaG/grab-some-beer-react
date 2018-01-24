@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import {
-  searchFacebookPlacesCreator, searchFoursquareCreator,
-  searchGooglePlacesCreator
-} from '../redux/actions/api.actions';
-import './Home.css';
+import { searchCreator } from '../redux/actions/api.actions';
 import { setUserLocationCreator } from '../redux/actions/user.actions';
 import { connect } from 'react-redux';
+import './Home.css';
 
 const styles = () => ({
   root: {
@@ -23,21 +20,14 @@ class Home extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if(nextProps.user && nextProps.user.position) {
       let position = nextProps.user.position;
-      searchFoursquareCreator({
+      searchCreator({
         latitude: position.latitude,
         longitude: position.longitude,
       });
-      searchGooglePlacesCreator({
-        latitude: position.latitude,
-        longitude: position.longitude,
-      });
-      searchFacebookPlacesCreator({
-        latitude: position.latitude,
-        longitude: position.longitude,
-      });
-      nextProps.history.push('results');
+      // nextProps.history.push('results');
     }
   }
 

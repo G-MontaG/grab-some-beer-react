@@ -38,3 +38,16 @@ export const searchFacebookPlacesAction = payload => ({
 export const searchFacebookPlacesCreator = payload => store.dispatch(
   searchFacebookPlacesAction(payload)
 );
+
+export const SEARCH_START = 'SEARCH_START';
+export const SEARCH_END = 'SEARCH_END';
+export const SEARCH_ERROR = 'SEARCH_ERROR';
+
+export const searchStartAction = payload => ({
+  type: SEARCH_START,
+  payload,
+});
+
+export const searchCreator = payload => store.dispatch(
+  searchStartAction(payload)
+);

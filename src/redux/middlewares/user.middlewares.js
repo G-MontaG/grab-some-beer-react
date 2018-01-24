@@ -21,7 +21,10 @@ export function* setUserLocationMiddleware(action) {
     const result = yield location;
     yield put({
       type: SET_USER_LOCATION_SUCCEEDED,
-      payload: { latitude: result.coords.latitude, longitude: result.coords.longitude },
+      payload: {
+        latitude: result.coords.latitude,
+        longitude: result.coords.longitude,
+      },
     });
   } catch (error) {
     errorCreator(error.message);
