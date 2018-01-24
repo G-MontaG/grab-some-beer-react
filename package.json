@@ -36,6 +36,7 @@
     "redux-devtools": "^3.4.1"
   },
   "scripts": {
+    "preinstall": "npm install -g serve",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
