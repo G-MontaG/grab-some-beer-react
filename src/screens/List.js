@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
-import { CircularProgress }  from 'material-ui/Progress';
+import { CircularProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 import { GoogleMapContainer } from '../containers/google-map.container';
 import ListContainer from '../containers/list.container';
@@ -12,6 +12,11 @@ const styles = theme => ({
   progress: {
     margin: `0 ${theme.spacing.unit * 2}px`,
   },
+  root: {
+    boxSizing: 'border-box',
+    padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
+    margin: [[0, 'auto']],
+  }
 });
 
 class List extends React.Component {
@@ -33,7 +38,7 @@ class List extends React.Component {
     if (searchResults.isLoading) {
       return <CircularProgress className={classes.progress} size={50} />;
     } else {
-      if(searchResults.foursquareSearchResults) {
+      if (searchResults.foursquareSearchResults) {
         if (toggleButton === 'map') {
           return <GoogleMapContainer />;
         } else {
@@ -50,11 +55,13 @@ class List extends React.Component {
     return (
       <div>
         <AppBarContainer handleToggleButton={this.handleToggleButton} />
-        <Grid container>
-          <Grid item xs={12}>
-            {this.renderList(classes, searchResults, toggleButton)}
+        <div className={classes.root}>
+          <Grid container>
+            <Grid item xs={12}>
+              {this.renderList(classes, searchResults, toggleButton)}
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
