@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid';
 import { CircularProgress }  from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 import { GoogleMapContainer } from '../containers/google-map.container';
+import ListContainer from '../containers/list.container';
 import AppBarContainer from '../containers/app-bar.container';
 import { connect } from 'react-redux';
 
@@ -32,10 +33,12 @@ class List extends React.Component {
     if (searchResults.isLoading) {
       return <CircularProgress className={classes.progress} size={50} />;
     } else {
-      if (toggleButton === 'map') {
-        return <GoogleMapContainer />;
-      } else {
-        return 'List';
+      if(searchResults.foursquareSearchResults) {
+        if (toggleButton === 'map') {
+          return <GoogleMapContainer />;
+        } else {
+          return <ListContainer />;
+        }
       }
     }
   }
