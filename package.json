@@ -36,7 +36,7 @@
     "redux-devtools": "^3.4.1"
   },
   "scripts": {
-    "preinstall": "npm i react-scripts -g && npm i npm-run-all -g && npm i node-sass-chokidar -g",
+    "preinstall": "npm i react-scripts -g && npm i npm-run-all -g && npm i node-sass-chokidar -g && npm i eslint -g",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
