@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { reducer as formReducer } from 'redux-form';
 import apiReducers from './reducers/api.reducers';
 import errorReducer from './reducers/error.reducer';
 import userReducers from './reducers/user.reducers';
@@ -12,6 +13,7 @@ const store = createStore(
     searchResults: apiReducers,
     error: errorReducer,
     user: userReducers,
+    form: formReducer,
   }),
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
