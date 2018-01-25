@@ -8,6 +8,7 @@ import Home from './screens/Home';
 import List from './screens/List';
 import { connect } from 'react-redux';
 import './App.css';
+import 'react-select/dist/react-select.css';
 
 class App extends React.Component {
   state = {
