@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
-import { GoogleMapContainer } from '../containers/google-map.container';
+import GoogleMapContainer from '../containers/google-map.container';
 import ListContainer from '../containers/list.container';
 import AppBarContainer from '../containers/app-bar.container';
 
