@@ -1,9 +1,9 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 
-export const renderCheckbox = ({ input }) => (
+export default ({ input }) => (
   <Checkbox
-    checked={input.value ? true : false}
+    checked={!!input.value}
     onChange={input.onChange}
   />
 );

@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects';
 import { errorCreator } from '../actions/error.actions';
 import { SET_USER_LOCATION_FAILED, SET_USER_LOCATION_SUCCEEDED } from '../actions/user.actions';
 
-export function* setUserLocationMiddleware(action) {
+export default function* setUserLocationMiddleware() {
   const { geolocation } = navigator;
 
   const location = new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ export function* setUserLocationMiddleware(action) {
       resolve(position);
     }, () => {
       reject(new Error('Without geolocation we doesn\'t know where to search. Sorry :('));
-    }, { enableHighAccuracy: true });
+    }, { enableHighAccuracy: true, timeout: 10 * 1000 });
   });
 
   try {

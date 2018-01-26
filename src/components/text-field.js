@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import TextField from 'material-ui/TextField';
 
-export const renderTextField = ({
+export default ({
                                   input,
                                   label,
                                   meta: { touched, error },

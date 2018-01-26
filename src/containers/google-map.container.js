@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMapComponent } from '../components/google-map.component';
+import GoogleMapComponent from '../components/google-map.component';
 
 export class GoogleMapContainer extends React.PureComponent {
   state = {

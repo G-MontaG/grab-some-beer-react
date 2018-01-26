@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 import apiReducers from './reducers/api.reducers';
 import errorReducer from './reducers/error.reducer';
 import userReducers from './reducers/user.reducers';
-import { middlewares } from './middlewares';
+import middlewares from './middlewares';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

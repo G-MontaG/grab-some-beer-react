@@ -4,8 +4,8 @@ import { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import { withStyles } from 'material-ui/styles/index';
 import { Field, reduxForm } from 'redux-form';
-import { renderTextField } from './text-field';
-import { renderCheckbox } from './checkbox';
+import renderTextField from './text-field';
+import renderCheckbox from './checkbox';
 
 const styles = () => ({});
 
@@ -31,8 +31,6 @@ class FilterForm extends React.Component {
 
   render() {
     const { handleSubmit, handleFilterClose } = this.props;
-    const { selectedOption } = this.state;
-    const value = selectedOption && selectedOption.value;
 
     return (
       <form onSubmit={handleSubmit}>
