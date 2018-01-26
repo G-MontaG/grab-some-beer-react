@@ -15,7 +15,9 @@ import {
   searchGooglePlacesRequest,
 } from '../../api/api.service';
 import { errorCreator } from '../actions/error.actions';
-import { mapFoursquareResultsToList, mapGooglePlacesResultsToList, mapFacebookPlacesResultsToList } from '../../screens/dataToListMappers';
+import { mapFoursquareResultsToList, mapGooglePlacesResultsToList, mapFacebookPlacesResultsToList } from '../../services/dataToListMappers';
+import { JOIN_LISTS_START } from '../actions/app.actions';
+import store from '../store';
 
 export function* searchFoursquareMiddleware(action) {
   try {
@@ -96,6 +98,7 @@ export function* searchMiddleware(action) {
       call(searchGooglePlacesMiddleware, action),
       call(searchFacebookPlacesMiddleware, action),
     ]);
+    yield put({ type: JOIN_LISTS_START, payload: store.getState().searchResults });
     yield put({ type: SEARCH_END });
   } catch (e) {
     yield put({

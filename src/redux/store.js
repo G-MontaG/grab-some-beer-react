@@ -6,11 +6,13 @@ import apiReducers from './reducers/api.reducers';
 import errorReducer from './reducers/error.reducer';
 import userReducers from './reducers/user.reducers';
 import middlewares from './middlewares';
+import appReducers from './reducers/app.reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     searchResults: apiReducers,
+    app: appReducers,
     error: errorReducer,
     user: userReducers,
     form: formReducer,
