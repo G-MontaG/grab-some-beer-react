@@ -23,3 +23,5 @@ yarn-error.log*
 src/**/*.css
 
 .idea
+.vscode
+.storybook
