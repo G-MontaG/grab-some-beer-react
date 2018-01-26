@@ -15,6 +15,7 @@ import {
   searchGooglePlacesRequest,
 } from '../../api/api.service';
 import { errorCreator } from '../actions/error.actions';
+import { mapFoursquareResultsToList, mapGooglePlacesResultsToList, mapFacebookPlacesResultsToList } from '../../screens/dataToListMappers';
 
 export function* searchFoursquareMiddleware(action) {
   try {
@@ -22,7 +23,7 @@ export function* searchFoursquareMiddleware(action) {
     if (response.status === 200) {
       yield put({
         type: SEARCH_FOURSQUARE_SUCCEEDED,
-        payload: response.data,
+        payload: response.data.response.venues.map(mapFoursquareResultsToList),
       });
     } else {
       errorCreator('Fail search on foursquare');
@@ -46,7 +47,7 @@ export function* searchGooglePlacesMiddleware(action) {
     if (response.status === 200) {
       yield put({
         type: SEARCH_GOOGLE_PLACES_SUCCEEDED,
-        payload: response.data,
+        payload: response.data.results.map(mapGooglePlacesResultsToList),
       });
     } else {
       errorCreator('Fail search on google places');
@@ -70,7 +71,7 @@ export function* searchFacebookPlacesMiddleware(action) {
     if (response.status === 200) {
       yield put({
         type: SEARCH_FACEBOOK_PLACES_SUCCEEDED,
-        payload: response.data,
+        payload: response.data.data.map(mapFacebookPlacesResultsToList),
       });
     } else {
       errorCreator('Fail search on google places');
