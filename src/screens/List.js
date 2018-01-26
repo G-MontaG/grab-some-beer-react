@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
+import { connect } from 'react-redux';
 import { GoogleMapContainer } from '../containers/google-map.container';
 import ListContainer from '../containers/list.container';
 import AppBarContainer from '../containers/app-bar.container';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   progress: {
@@ -16,35 +16,41 @@ const styles = theme => ({
     boxSizing: 'border-box',
     padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
     margin: [[0, 'auto']],
-  }
+  },
 });
 
 class List extends React.Component {
   state = {
-    toggleButton: 'list'
+    toggleButton: 'list',
   };
 
   handleToggleButton = () => {
+    function toggleButton(prevState) {
+      return prevState.toggleButton === 'map' ? 'list' : 'map';
+    }
+
     this.setState((prevState) => {
-      return Object.assign(
+      Object.assign(
         {},
         this.state,
-        { toggleButton: (() => prevState.toggleButton === 'map' ? 'list' : 'map')() }
+        { toggleButton: toggleButton(prevState) },
       );
     });
   };
 
-  renderList(classes, searchResults, toggleButton) {
+  renderList() {
+    const { classes, searchResults } = this.props;
+    const { toggleButton } = this.state;
+
     if (searchResults.isLoading) {
       return <CircularProgress className={classes.progress} size={50} />;
-    } else {
-      if (searchResults.foursquareSearchResults) {
-        if (toggleButton === 'map') {
-          return <GoogleMapContainer />;
-        } else {
-          return <ListContainer />;
-        }
+    }
+
+    if (searchResults.foursquareSearchResults) {
+      if (toggleButton === 'map') {
+        return <GoogleMapContainer />;
       }
+      return <ListContainer />;
     }
   }
 
