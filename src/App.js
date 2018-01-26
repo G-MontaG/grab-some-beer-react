@@ -1,19 +1,25 @@
+import 'react-select/dist/react-select.css';
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import Reboot from 'material-ui/Reboot';
 import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
 import Snackbar from 'material-ui/Snackbar';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
+import './App.css';
 import Home from './screens/Home';
 import List from './screens/List';
-import { connect } from 'react-redux';
-import './App.css';
-import 'react-select/dist/react-select.css';
 
 class App extends React.Component {
   state = {
-    snackbarOpen: false
+    snackbarOpen: false,
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.error) {
+      this.handleSnackbarOpen();
+    }
+  }
 
   handleSnackbarOpen = () => {
     this.setState({ snackbarOpen: true });
@@ -22,12 +28,6 @@ class App extends React.Component {
   handleSnackbarClose = () => {
     this.setState({ snackbarOpen: false });
   };
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.error) {
-      this.handleSnackbarOpen();
-    }
-  }
 
   render() {
     const { error } = this.props;
@@ -63,8 +63,8 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    error: state.error
-  }
+    error: state.error,
+  };
 }
 
 export default connect(mapStateToProps)(App);

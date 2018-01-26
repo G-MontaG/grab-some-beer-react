@@ -9,7 +9,7 @@ import renderCheckbox from './checkbox';
 
 const styles = () => ({});
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
   if (!values.query) {
     errors.query = 'Required';

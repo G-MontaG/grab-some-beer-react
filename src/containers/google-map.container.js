@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleMapComponent from '../components/google-map.component';
 
-export class GoogleMapContainer extends React.PureComponent {
+export default class GoogleMapContainer extends React.PureComponent {
   state = {
     isMarkerShown: false,
   };
@@ -28,9 +28,9 @@ export class GoogleMapContainer extends React.PureComponent {
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `95.2vh` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
+        loadingElement={<div style={{ height: '100%' }} />}
+        containerElement={<div style={{ height: '95.2vh' }} />}
+        mapElement={<div style={{ height: '100%' }} />}
       />
     );
   }

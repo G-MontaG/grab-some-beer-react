@@ -16,4 +16,4 @@ function ListItemComponent(props) {
   );
 }
 
-export default  withStyles(styles)(ListItemComponent);
+export default withStyles(styles)(ListItemComponent);

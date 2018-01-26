@@ -75,8 +75,10 @@ class AppBarContainer extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <FilterForm onSubmit={this.submit}
-                      handleFilterClose={this.handleFilterClose} />
+          <FilterForm
+            onSubmit={this.submit}
+            handleFilterClose={this.handleFilterClose}
+          />
         </Dialog>
       </AppBar>
 
