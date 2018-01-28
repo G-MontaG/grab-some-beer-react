@@ -15,6 +15,7 @@ export function mapFoursquareResultsToList(item) {
     cover: null,
     about: null,
     rating: null,
+    sourceType: 'foursquare',
   };
 }
 
@@ -38,6 +39,7 @@ export function mapGooglePlacesResultsToList(item) {
     cover: photos[0],
     about: description,
     rating,
+    sourceType: 'google',
   };
 }
 
@@ -61,5 +63,6 @@ export function mapFacebookPlacesResultsToList(item) {
     cover: photos ? photos.data[0] : null,
     about,
     rating: overall_star_rating,
+    sourceType: 'facebook',
   };
 }

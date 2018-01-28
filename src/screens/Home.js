@@ -5,12 +5,12 @@ import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 import red from 'material-ui/colors/red';
+import { connect } from 'react-redux';
 import { searchCreator } from '../redux/actions/api.actions';
 import { setUserLocationCreator } from '../redux/actions/user.actions';
-import { connect } from 'react-redux';
 import './Home.css';
 
-const styles = (theme) => ({
+const styles = () => ({
   root: {
     alignItems: 'center',
   },
@@ -26,18 +26,13 @@ const styles = (theme) => ({
 
 class Home extends React.Component {
   state = {
-    isLoad: false
-  };
-
-  handleStartSearch = () => {
-    this.setState(Object.assign({}, this.state, { isLoad: true }));
-    setUserLocationCreator();
+    isLoad: false,
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user && nextProps.user.position) {
       this.setState(Object.assign({}, this.state, { isLoad: false }));
-      let position = nextProps.user.position;
+      const { position } = nextProps.user;
       searchCreator({
         latitude: position.latitude,
         longitude: position.longitude,
@@ -45,6 +40,11 @@ class Home extends React.Component {
       nextProps.history.push('results');
     }
   }
+
+  handleStartSearch = () => {
+    this.setState(Object.assign({}, this.state, { isLoad: true }));
+    setUserLocationCreator();
+  };
 
   render() {
     const { classes } = this.props;
