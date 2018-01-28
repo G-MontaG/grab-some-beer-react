@@ -1,22 +1,33 @@
-export default function joinLists(lists) {
-  iterator(lists.foursquareSearchResults, lists.googleSearchResults);
-  console.log(lists);
-}
-
-function nameCompare(item1, item2, parent, index) {
+function nameCompare(item1, item2) {
   if (item1.name === item2.name) {
-    parent.equalityRank[index] = parent.equalityRank[index] + 0.5;
+    return 0.5;
   }
+  return 0;
 }
 
-function iterator(list1, list2) {
-  const base = Object.assign({}, list1);
-  list1.map((item1, index1) => {
-    base[index1].equalityRank = {};
-    return list2.map((item2, index2) => {
-      !base[index1].equalityRank[index2] ? base[index1].equalityRank[index2] = 0 : null;
-      return nameCompare(item1, item2, list1[index1], index2);
+function getEqualityRating(item1, item2) {
+  let equalityRating = 0;
+  equalityRating += nameCompare(item1, item2);
+  return equalityRating;
+}
+
+export default function joinLists(lists) {
+  let resultOfJoin = [];
+  const copyGoogleSearchResults = [].concat(lists.googleSearchResults);
+  lists.foursquareSearchResults.map((foursquareItem) => {
+    const founditem = copyGoogleSearchResults.find((googleItem) => {
+      return getEqualityRating(foursquareItem, googleItem) > 0.5;
     });
+    console.log(founditem);
+    if (founditem) {
+      resultOfJoin.push([foursquareItem, founditem]);
+      // delete founditem from copyGoogleSearchResults
+      return null;
+    }
+    resultOfJoin.push(foursquareItem);
+    return null;
   });
-  return base;
+  resultOfJoin = [].concat(resultOfJoin, copyGoogleSearchResults);
+
+  return resultOfJoin;
 }
