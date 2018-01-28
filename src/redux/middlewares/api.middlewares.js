@@ -19,24 +19,8 @@ import { mapFoursquareResultsToList, mapGooglePlacesResultsToList, mapFacebookPl
 import { JOIN_LISTS_START } from '../actions/app.actions';
 import store from '../store';
 
-function getFromLocalStorage(key) {
-  if (localStorage.getItem(key)) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-  return null;
-}
-
 export function* searchFoursquareMiddleware(action) {
   try {
-    if (action.fromCash) {
-      const fromStore = getFromLocalStorage('foursquare');
-      if (fromStore) {
-        yield put({
-          type: SEARCH_FOURSQUARE_SUCCEEDED,
-          payload: fromStore,
-        });
-      }
-    }
     const response = yield call(searchFoursquareRequest, action.payload);
     if (response.status === 200) {
       const payload = response.data.response.venues.map(mapFoursquareResultsToList);
@@ -63,15 +47,6 @@ export function* searchFoursquareMiddleware(action) {
 
 export function* searchGooglePlacesMiddleware(action) {
   try {
-    if (action.fromCash) {
-      const fromStore = getFromLocalStorage('google');
-      if (fromStore) {
-        yield put({
-          type: SEARCH_GOOGLE_PLACES_SUCCEEDED,
-          payload: fromStore,
-        });
-      }
-    }
     const response = yield call(searchGooglePlacesRequest, action.payload);
     if (response.status === 200) {
       const payload = response.data.results.map(mapGooglePlacesResultsToList);
@@ -98,15 +73,6 @@ export function* searchGooglePlacesMiddleware(action) {
 
 export function* searchFacebookPlacesMiddleware(action) {
   try {
-    if (action.fromCash) {
-      const fromStore = getFromLocalStorage('facebook');
-      if (fromStore) {
-        yield put({
-          type: SEARCH_FACEBOOK_PLACES_SUCCEEDED,
-          payload: fromStore,
-        });
-      }
-    }
     const response = yield call(searchFacebookPlacesRequest, action.payload);
     if (response.status === 200) {
       const payload = response.data.data.map(mapFacebookPlacesResultsToList);

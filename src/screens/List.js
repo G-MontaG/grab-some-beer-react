@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import GoogleMapContainer from '../containers/google-map.container';
 import ListContainer from '../containers/list.container';
 import AppBarContainer from '../containers/app-bar.container';
-import { searchCreator } from '../redux/actions/api.actions';
 
 const styles = theme => ({
   progress: {
@@ -27,13 +26,7 @@ class List extends React.Component {
 
   componentWillMount() {
     const { user, searchResults } = this.props;
-    if (!searchResults.isLoading && user.position) {
-      searchCreator({
-        latitude: user.position.latitude,
-        longitude: user.position.longitude,
-      }, true);
-      return null;
-    } else if (!searchResults.isLoading && !user.position) {
+    if (!searchResults.isLoading && !user.position) {
       this.props.history.push('');
     }
   }

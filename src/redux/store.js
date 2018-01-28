@@ -7,7 +7,9 @@ import errorReducer from './reducers/error.reducer';
 import userReducers from './reducers/user.reducers';
 import middlewares from './middlewares';
 import appReducers from './reducers/app.reducers';
+import { loadState, saveState } from '../services/localStorage';
 
+const presistedState = loadState();
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
@@ -17,8 +19,14 @@ const store = createStore(
     user: userReducers,
     form: formReducer,
   }),
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  presistedState,
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 export { store as default };
 
 sagaMiddleware.run(middlewares);
+
+store.subscribe(() => saveState({
+  searchResults: store.getState().searchResults,
+  user: store.getState().user,
+}));
