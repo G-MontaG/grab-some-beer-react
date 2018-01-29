@@ -23,7 +23,7 @@ export default function joinLists(lists) {
   let resultOfJoin = [];
   // copy google list because we will remove elements in compare process
   // and we need to save original list
-  const copyGoogleSearchResults = [].concat(lists.googleSearchResults);
+  let copyGoogleSearchResults = [...lists.googleSearchResults];
   lists.foursquareSearchResults.push({ name: 'Fake' });
   copyGoogleSearchResults.push({ name: 'The Fake' });
   lists.foursquareSearchResults.map((foursquareItem) => {
@@ -34,14 +34,17 @@ export default function joinLists(lists) {
     console.log('founditem', copyGoogleSearchResults[foundItemIndex]);
     if (copyGoogleSearchResults[foundItemIndex]) {
       resultOfJoin.push([foursquareItem, copyGoogleSearchResults[foundItemIndex]]);
-      copyGoogleSearchResults.splice(foundItemIndex, 1);
+      copyGoogleSearchResults = [
+        ...copyGoogleSearchResults.slice(0, foundItemIndex),
+        ...copyGoogleSearchResults.slice(foundItemIndex + 1),
+      ];
       console.log('copyGoogleSearchResults', copyGoogleSearchResults);
       return null;
     }
     resultOfJoin.push(foursquareItem);
     return null;
   });
-  resultOfJoin = [].concat(resultOfJoin, copyGoogleSearchResults);
+  resultOfJoin = [...resultOfJoin, ...copyGoogleSearchResults];
   console.log('resultOfJoin', resultOfJoin);
   return resultOfJoin;
 }

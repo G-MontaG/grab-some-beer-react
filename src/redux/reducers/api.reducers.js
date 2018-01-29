@@ -9,29 +9,17 @@ import {
 export default function apiReducers(state = { isLoading: false }, action) {
   switch (action.type) {
     case SEARCH_START:
-      return Object.assign({}, state, {
-        isLoading: true,
-      });
+      return { ...state, isLoading: true };
     case SEARCH_END:
-      return Object.assign({}, state, {
-        isLoading: false,
-      });
+      return { ...state, isLoading: false };
     case SEARCH_ERROR:
-      return Object.assign({}, state, {
-        isLoading: false,
-      });
+      return { ...state, isLoading: false };
     case SEARCH_FOURSQUARE_SUCCEEDED:
-      return Object.assign({}, state, {
-        foursquareSearchResults: action.payload,
-      });
+      return { ...state, foursquareSearchResults: action.payload };
     case SEARCH_GOOGLE_PLACES_SUCCEEDED:
-      return Object.assign({}, state, {
-        googleSearchResults: action.payload,
-      });
+      return { ...state, googleSearchResults: action.payload };
     case SEARCH_FACEBOOK_PLACES_SUCCEEDED:
-      return Object.assign({}, state, {
-        facebookSearchResults: action.payload,
-      });
+      return { ...state, facebookSearchResults: action.payload };
     default:
       return state;
   }
