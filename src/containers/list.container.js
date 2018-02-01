@@ -14,20 +14,26 @@ class ListContainer extends React.Component {
 
     return (
       <Fragment>
-        Foursquare
-        {searchResults.foursquareSearchResults.map(item => (
-          <ListItemComponent item={item} key={item.id} />
-        ))}
-        <br />
-        Google
-        {searchResults.googleSearchResults.map(item => (
-          <ListItemComponent item={item} key={item.id} />
-        ))}
-        <br />
-        Facebook
-        {searchResults.facebookSearchResults.map(item => (
-          <ListItemComponent item={item} key={item.id} />
-        ))}
+        <div>
+          Foursquare
+          {searchResults.foursquareSearchResults.map(item => (
+            <ListItemComponent item={item} key={item.id} />
+          ))}
+          <br />
+        </div>
+        <div>
+          Google
+          {searchResults.googleSearchResults.map(item => (
+            <ListItemComponent item={item} key={item.id} />
+          ))}
+          <br />
+        </div>
+        <div>
+          Facebook
+          {searchResults.facebookSearchResults.map(item => (
+            <ListItemComponent item={item} key={item.id} />
+          ))}
+        </div>
       </Fragment>
     );
   }

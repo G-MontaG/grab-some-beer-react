@@ -1,6 +1,5 @@
 import { call, put, all } from 'redux-saga/effects';
 import {
-  SEARCH_END,
   SEARCH_ERROR,
   SEARCH_FACEBOOK_PLACES_FAILED,
   SEARCH_FACEBOOK_PLACES_SUCCEEDED,
@@ -105,7 +104,6 @@ export function* searchMiddleware(action) {
       call(searchFacebookPlacesMiddleware, action),
     ]);
     yield put({ type: JOIN_LISTS_START, payload: store.getState().searchResults });
-    yield put({ type: SEARCH_END });
   } catch (e) {
     yield put({
       type: SEARCH_ERROR,

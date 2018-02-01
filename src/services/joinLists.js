@@ -1,14 +1,58 @@
-const minEqualityRating = 0;
+const minEqualityRating = 0.49;
 
 function nameCompare(item1, item2) {
-  const longerStr = item1.name.length >= item2.name.length ? item1.name : item2.name;
-  const shorterStr = item1.name.length >= item2.name.length ? item2.name : item1.name;
-  longerStr.toLowerCase();
-  shorterStr.toLowerCase();
-  if (longerStr === shorterStr) {
+  const item1Name = item1.name.toLowerCase();
+  const item2Name = item2.name.toLowerCase();
+  if (item1Name === item2Name) {
     return 0.5;
-  } else if (longerStr.includes(shorterStr)) {
+  } else if (item1Name.includes(item2Name) || item2Name.includes(item1Name)) {
     return 0.25;
+  }
+  return 0;
+}
+
+function phoneCompare(item1, item2) {
+  if (!item1.contact.phone || !item2.contact.phone) {
+    return 0;
+  }
+  const item1Phone = item1.contact.phone.split(',')[0].replace('+38', '').replace('(', '').replace(')', '');
+  const item2Phone = item2.contact.phone.split(',')[0].replace('+38', '').replace('(', '').replace(')', '');
+  if (item1Phone === item2Phone) {
+    return 0.25;
+  } else if (item1Phone.includes(item2Phone) || item2Phone.includes(item1Phone)) {
+    return 0.25;
+  }
+  return 0;
+}
+
+function isNear(item1, item2) {
+  const itemsDiff = Math.abs(item1 - item2);
+  return itemsDiff <= 0.5;
+}
+
+function locationCompare(item1, item2) {
+  const item1Lat = item1.location.lat;
+  const item2Lat = item2.location.lat;
+  const item1Lng = item1.location.lng;
+  const item2Lng = item2.location.lng;
+  if (item1Lat === item2Lat) {
+    if (item1Lng === item2Lng) {
+      return 0.5;
+    } else if (isNear(item1Lng, item2Lng)) {
+      return 0.25;
+    }
+    return 0;
+  } else if ((item1Lng === item2Lng)) {
+    if (item1Lat === item2Lat) {
+      return 0.5;
+    } else if (isNear(item1Lat, item2Lat)) {
+      return 0.25;
+    }
+    return 0;
+  } else if (isNear(item1Lat, item2Lat) && isNear(item1Lng, item2Lng)) {
+    return 0.25;
+  } else if (isNear(item1Lat, item2Lat) || isNear(item1Lng, item2Lng)) {
+    return 0.15;
   }
   return 0;
 }
@@ -16,35 +60,44 @@ function nameCompare(item1, item2) {
 function getEqualityRating(item1, item2) {
   let equalityRating = 0;
   equalityRating += nameCompare(item1, item2);
+  equalityRating += phoneCompare(item1, item2);
+  equalityRating += locationCompare(item1, item2);
   return equalityRating;
 }
 
 export default function joinLists(lists) {
   let resultOfJoin = [];
-  // copy google list because we will remove elements in compare process
-  // and we need to save original list
+
   let copyGoogleSearchResults = [...lists.googleSearchResults];
-  lists.foursquareSearchResults.push({ name: 'Fake' });
-  copyGoogleSearchResults.push({ name: 'The Fake' });
+  let copyFacebookSearchResults = [...lists.facebookSearchResults];
+  
   lists.foursquareSearchResults.map((foursquareItem) => {
-    const foundItemIndex = copyGoogleSearchResults.findIndex((googleItem) => {
-      return getEqualityRating(foursquareItem, googleItem) > minEqualityRating;
-    });
-    console.log('copyGoogleSearchResults', copyGoogleSearchResults);
-    console.log('founditem', copyGoogleSearchResults[foundItemIndex]);
-    if (copyGoogleSearchResults[foundItemIndex]) {
+    const foundItemIndex = copyGoogleSearchResults.findIndex(googleItem => getEqualityRating(foursquareItem, googleItem) > minEqualityRating);
+    if (foundItemIndex > -1 && copyGoogleSearchResults[foundItemIndex]) {
       resultOfJoin.push([foursquareItem, copyGoogleSearchResults[foundItemIndex]]);
-      copyGoogleSearchResults = [
-        ...copyGoogleSearchResults.slice(0, foundItemIndex),
-        ...copyGoogleSearchResults.slice(foundItemIndex + 1),
-      ];
-      console.log('copyGoogleSearchResults', copyGoogleSearchResults);
-      return null;
+      copyGoogleSearchResults = [...copyGoogleSearchResults.slice(0, foundItemIndex), ...copyGoogleSearchResults.slice(foundItemIndex + 1)];
+      return undefined;
     }
     resultOfJoin.push(foursquareItem);
-    return null;
+    return undefined;
   });
   resultOfJoin = [...resultOfJoin, ...copyGoogleSearchResults];
-  console.log('resultOfJoin', resultOfJoin);
-  return resultOfJoin;
+
+  resultOfJoin.map((resultsItem, resultsItemIndex) => {
+    let foundItemIndex = null;
+    if (Array.isArray(resultsItem)) {
+      const foundItemIndex1 = copyFacebookSearchResults.findIndex(facebookItem => getEqualityRating(resultsItem[0], facebookItem) > minEqualityRating);
+      const foundItemIndex2 = copyFacebookSearchResults.findIndex(facebookItem => getEqualityRating(resultsItem[1], facebookItem) > minEqualityRating);
+      foundItemIndex = foundItemIndex1 > -1 ? foundItemIndex1 : foundItemIndex2;
+    } else {
+      foundItemIndex = copyFacebookSearchResults.findIndex(facebookItem => getEqualityRating(resultsItem, facebookItem) > minEqualityRating);
+    }
+    if (foundItemIndex > -1 && copyFacebookSearchResults[foundItemIndex]) {
+      resultOfJoin[resultsItemIndex] = [...Array.isArray(resultsItem) ? resultOfJoin[resultsItemIndex] : [resultOfJoin[resultsItemIndex]], copyFacebookSearchResults[foundItemIndex]];
+      copyFacebookSearchResults = [...copyFacebookSearchResults.slice(0, foundItemIndex), ...copyFacebookSearchResults.slice(foundItemIndex + 1)];
+      return undefined;
+    }
+    return undefined;
+  });
+  return [...resultOfJoin, ...copyFacebookSearchResults];
 }
