@@ -16,10 +16,10 @@ const styles = theme => ({
     boxSizing: 'border-box',
     padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
     margin: [[0, 'auto']],
-    'min-height': 'calc(100vh - 64px)',
+    minHeight: 'calc(100vh - 64px)',
     display: 'flex',
-    'justify-content': 'center',
-    'align-items': 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -74,7 +74,7 @@ class List extends React.Component {
         <AppBarContainer handleToggleButton={this.handleToggleButton} />
         <div className={classes.root}>
           <Grid container>
-            <Grid item xs={12} style={{ 'text-align': 'center' }}>
+            <Grid item xs={12} style={{ textAlign: 'center' }}>
               {this.renderList(classes, searchResults, toggleButton)}
             </Grid>
           </Grid>

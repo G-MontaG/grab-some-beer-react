@@ -44,7 +44,7 @@ export function mapGooglePlacesResultsToList(item) {
 }
 
 export function mapFacebookPlacesResultsToList(item) {
-  const { id, name, location, single_line_address, category_list, website, link, phone, photos, about, overall_star_rating } = item;
+  const { id, name, location, single_line_address, category_list, website, link, phone, cover, about, overall_star_rating } = item;
   return {
     id,
     name,
@@ -60,7 +60,7 @@ export function mapFacebookPlacesResultsToList(item) {
       phone,
       facebook: link,
     },
-    cover: photos ? photos.data[0] : null,
+    cover,
     about,
     rating: overall_star_rating,
     sourceType: 'facebook',

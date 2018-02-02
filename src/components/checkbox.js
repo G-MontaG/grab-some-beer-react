@@ -1,9 +1,11 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 
-export default ({ input }) => (
+const CustomCheckbox = ({ input }) => (
   <Checkbox
     checked={!!input.value}
     onChange={input.onChange}
   />
 );
+
+export default CustomCheckbox;
