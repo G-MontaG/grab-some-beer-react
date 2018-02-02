@@ -27,6 +27,6 @@ export { store as default };
 sagaMiddleware.run(middlewares);
 
 store.subscribe(() => saveState({
-  searchResults: store.getState().searchResults,
+  app: store.getState().app,
   user: store.getState().user,
 }));

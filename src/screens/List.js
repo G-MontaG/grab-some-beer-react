@@ -16,6 +16,10 @@ const styles = theme => ({
     boxSizing: 'border-box',
     padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
     margin: [[0, 'auto']],
+    'min-height': 'calc(100vh - 64px)',
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
   },
 });
 
@@ -46,14 +50,14 @@ class List extends React.Component {
   };
 
   renderList() {
-    const { classes, searchResults } = this.props;
+    const { classes, searchResults, app } = this.props;
     const { toggleButton } = this.state;
 
     if (searchResults.isLoading) {
       return <CircularProgress className={classes.progress} size={50} />;
     }
 
-    if (searchResults.foursquareSearchResults) {
+    if (app.list) {
       if (toggleButton === 'map') {
         return <GoogleMapContainer />;
       }
@@ -70,7 +74,7 @@ class List extends React.Component {
         <AppBarContainer handleToggleButton={this.handleToggleButton} />
         <div className={classes.root}>
           <Grid container>
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{ 'text-align': 'center' }}>
               {this.renderList(classes, searchResults, toggleButton)}
             </Grid>
           </Grid>
@@ -84,9 +88,10 @@ List.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ user, searchResults }) => ({
+const mapStateToProps = ({ user, searchResults, app }) => ({
   user,
-  searchResults
+  searchResults,
+  app,
 });
 
 const ListWithStyles = withStyles(styles)(List);

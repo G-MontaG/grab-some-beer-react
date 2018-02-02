@@ -10,30 +10,13 @@ class ListContainer extends React.Component {
   state = {};
 
   render() {
-    const { searchResults } = this.props;
+    const { app } = this.props;
 
     return (
       <Fragment>
-        <div>
-          Foursquare
-          {searchResults.foursquareSearchResults.map(item => (
-            <ListItemComponent item={item} key={item.id} />
-          ))}
-          <br />
-        </div>
-        <div>
-          Google
-          {searchResults.googleSearchResults.map(item => (
-            <ListItemComponent item={item} key={item.id} />
-          ))}
-          <br />
-        </div>
-        <div>
-          Facebook
-          {searchResults.facebookSearchResults.map(item => (
-            <ListItemComponent item={item} key={item.id} />
-          ))}
-        </div>
+        {app.list.map(item => (
+          <ListItemComponent item={item} key={item.id} />
+        ))}
       </Fragment>
     );
   }
@@ -43,7 +26,7 @@ ListContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ searchResults }) => ({ searchResults });
+const mapStateToProps = ({ app }) => ({ app });
 
 const ListContainerWithStyles = withStyles(styles)(ListContainer);
 

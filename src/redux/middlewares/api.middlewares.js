@@ -27,7 +27,6 @@ export function* searchFoursquareMiddleware(action) {
         type: SEARCH_FOURSQUARE_SUCCEEDED,
         payload,
       });
-      localStorage.setItem('foursquare', JSON.stringify(payload));
     } else {
       errorCreator('Fail search on foursquare');
       yield put({
@@ -53,7 +52,6 @@ export function* searchGooglePlacesMiddleware(action) {
         type: SEARCH_GOOGLE_PLACES_SUCCEEDED,
         payload,
       });
-      localStorage.setItem('google', JSON.stringify(payload));
     } else {
       errorCreator('Fail search on google places');
       yield put({
@@ -79,7 +77,6 @@ export function* searchFacebookPlacesMiddleware(action) {
         type: SEARCH_FACEBOOK_PLACES_SUCCEEDED,
         payload,
       });
-      localStorage.setItem('facebook', JSON.stringify(payload));
     } else {
       errorCreator('Fail search on google places');
       yield put({
