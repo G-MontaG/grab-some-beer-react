@@ -63,7 +63,14 @@ const showCardRating = (item, classes) => {
 };
 
 const showCardContacts = (item, classes) => {
-  const link = item.contact.website || item.contact.link || item.contact.facebook;
+  let link = item.url || item.contact.website || item.contact.link;
+  link = !link && item.contact.facebook ? `https://www.facebook.com/${item.contact.facebook}` : link;
+  link = !link && item.contact.instagram ? `https://www.instagram.com/${item.contact.instagram}` : link;
+
+  if (link && !link.includes('http') && !link.includes('https')) {
+    link = `http://${link}`;
+  }
+
   if (item.contact.phone || link) {
     return (
       <CardActions>
@@ -76,7 +83,12 @@ const showCardContacts = (item, classes) => {
           </Button>
         }
         {link &&
-          <Button href={link} target="_blank" className={classes.cardButton}>
+          <Button
+            href={link}
+            target="_blank"
+            className={classes.cardButton}
+            style={{ marginLeft: 'auto' }}
+          >
             website
           </Button>
         }
