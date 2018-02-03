@@ -10,22 +10,27 @@ import StarBorderIcon from 'material-ui-icons/StarBorder';
 import Rating from 'react-rating';
 import { withStyles } from 'material-ui/styles/index';
 import listItemStyle from './listItemStyles';
+import Beer from '../../assets/images/beer.jpg';
 
 const showCardMedia = (item, classes) => {
   if (item.sourceType === 'facebook' && item.cover && item.cover.source) {
     return (<CardMedia
-      className={classes.media}
+      className={classes.cardMedia}
       image={item.cover.source}
       title={item.name}
     />);
   } else if (item.sourceType === 'google') {
     return (<CardMedia
-      className={classes.media}
+      className={classes.cardMedia}
       image={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${item.cover.photo_reference}&key=AIzaSyDM0zOC8J5eV6iz2J_6pNIAYN7sTZ5pFvE`}
-      title="Contemplative Reptile"
+      title={item.name}
     />);
   }
-  return undefined;
+  return (<CardMedia
+    className={classes.cardMedia}
+    image={Beer}
+    title={item.name}
+  />);
 };
 
 const showCardDistance = (item, classes) => {
@@ -102,7 +107,7 @@ const ListItem = (props) => {
           {showCardDistance(currentItem, classes)}
         </div>
         {showCardRating(currentItem, classes)}
-        <Typography className={classes.cardAbout}>{currentItem.about || 'test test test test test test test test test test test test test test test test test test'}</Typography>
+        <Typography className={classes.cardAbout}>{currentItem.about}</Typography>
         <Divider className={classes.cardDivider} />
         <Typography className={classes.cardAddress}>{currentItem.location.address}</Typography>
       </CardContent>

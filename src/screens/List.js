@@ -11,15 +11,18 @@ import AppBarContainer from '../containers/AppBarContainer';
 const styles = theme => ({
   progress: {
     margin: `0 ${theme.spacing.unit * 2}px`,
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   root: {
     boxSizing: 'border-box',
     padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
     margin: [[0, 'auto']],
     minHeight: 'calc(100vh - 64px)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: 'relative',
+    paddingTop: 72,
   },
 });
 
@@ -72,12 +75,8 @@ class List extends React.Component {
     return (
       <div>
         <AppBarContainer handleToggleButton={this.handleToggleButton} />
-        <div className={classes.root}>
-          <Grid container>
-            <Grid item xs={12} style={{ textAlign: 'center' }}>
+        <div className={classes.root} >
               {this.renderList(classes, searchResults, toggleButton)}
-            </Grid>
-          </Grid>
         </div>
       </div>
     );

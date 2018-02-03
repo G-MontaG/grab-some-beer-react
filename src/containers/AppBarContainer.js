@@ -11,11 +11,8 @@ import Dialog from 'material-ui/Dialog';
 import FilterForm from '../components/FilterForm';
 
 const styles = theme => ({
-  root: {
+  appBar: {
     width: '100%',
-  },
-  flex: {
-    flex: 1,
   },
   toolbar: {
     'justify-content': 'space-between',
@@ -50,7 +47,7 @@ class AppBarContainer extends React.Component {
     const { classes, handleToggleButton } = this.props;
 
     return (
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
           <Grid container>
             <Grid item xs={2}>
@@ -81,7 +78,6 @@ class AppBarContainer extends React.Component {
           />
         </Dialog>
       </AppBar>
-
     );
   }
 }

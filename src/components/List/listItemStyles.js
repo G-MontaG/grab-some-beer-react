@@ -15,6 +15,8 @@ const listItemStyles = () => ({
     marginBottom: 10,
     fontSize: 19,
     fontWeight: 400,
+    wordBreak: 'break-all',
+    paddingRight: 10,
   },
   cardDistance: {
     maxWidth: 70,
@@ -60,8 +62,8 @@ const listItemStyles = () => ({
   cardButton: {
     color: grey[700],
   },
-  media: {
-    height: 194,
+  cardMedia: {
+    height: 200,
   },
 });
 

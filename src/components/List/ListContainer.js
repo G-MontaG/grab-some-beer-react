@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Grid from 'material-ui/Grid';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles/index';
 import ListItem from './ListItem';
@@ -13,11 +14,13 @@ class ListContainer extends React.Component {
     const { app } = this.props;
 
     return (
-      <Fragment>
+      <Grid container>
         {app.list.map(item => (
-          <ListItem item={item} key={item.id} />
+          <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={item.id}>
+            <ListItem item={item} />
+          </Grid>
         ))}
-      </Fragment>
+      </Grid>
     );
   }
 }
