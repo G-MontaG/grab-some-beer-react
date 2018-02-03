@@ -14,7 +14,7 @@ export default function* setUserLocationMiddleware() {
       resolve(position);
     }, () => {
       reject(new Error('Without geolocation we doesn\'t know where to search. Sorry :('));
-    }, { enableHighAccuracy: true, timeout: 10 * 1000 });
+    }, { enableHighAccuracy: true, timeout: 10 * 2000 });
   });
 
   try {

@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://lit-headland-70957.herokuapp.com/api/',
-  timeout: 10000,
-  headers: { 'X-Custom-Header': 'foobar' },
+  timeout: 20000,
 });
 
 const FOURSQUARE_VERSION = '20180101';
