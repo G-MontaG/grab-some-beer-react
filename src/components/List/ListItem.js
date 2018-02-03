@@ -48,7 +48,7 @@ const showCardDistance = (item, classes) => {
 const showCardRating = (item, classes) => {
   if (item.rating) {
     return (
-      <Fragment>
+      <div className={classes.cardRating}>
         <Rating
           emptySymbol={<StarBorderIcon className={classes.cardStarIcon} />}
           fullSymbol={<StarIcon className={classes.cardStarIcon} />}
@@ -56,7 +56,7 @@ const showCardRating = (item, classes) => {
           readonly={true}
         />
         <Typography type="body1" className={classes.cardStarText}>{item.rating}</Typography>
-      </Fragment>
+      </div>
     );
   }
   return undefined;
@@ -118,7 +118,13 @@ const ListItem = (props) => {
           </Typography>
           {showCardDistance(currentItem, classes)}
         </div>
-        {showCardRating(currentItem, classes)}
+        <div className={classes.cardRatingContainer}>
+          {showCardRating(currentItem, classes)}
+          {currentItem.rating &&
+            <Typography type="body1" className={classes.cardCategories} style={currentItem.rating ? { float: 'right' } : {}}>
+              {currentItem.categories.slice(0, 3).join(', ')}
+            </Typography>}
+        </div>
         <Typography className={classes.cardAbout}>{currentItem.about}</Typography>
         <Divider className={classes.cardDivider} />
         <Typography className={classes.cardAddress}>{currentItem.location.address}</Typography>

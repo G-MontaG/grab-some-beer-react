@@ -36,6 +36,13 @@ const listItemStyles = () => ({
     marginLeft: 2,
     color: grey[600],
   },
+  cardRatingContainer: {
+    display: 'flex',
+  },
+  cardRating: {
+    minWidth: 105,
+    marginRight: 5,
+  },
   cardStarIcon: {
     height: 16,
     width: 16,
@@ -47,6 +54,10 @@ const listItemStyles = () => ({
     verticalAlign: 'middle',
     fontWeight: 400,
     marginLeft: 5,
+  },
+  cardCategories: {
+    textAlign: 'right',
+    flexGrow: 1,
   },
   cardAbout: {
     margin: [[10, 0, 10, 0]],
