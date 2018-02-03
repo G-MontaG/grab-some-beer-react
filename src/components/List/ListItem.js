@@ -1,71 +1,15 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent, CardMedia, CardActions } from 'material-ui/Card';
+import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import PlaceIcon from 'material-ui-icons/Place';
 import StarIcon from 'material-ui-icons/Star';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
-import amber from 'material-ui/colors/amber';
-import grey from 'material-ui/colors/grey';
 import Rating from 'react-rating';
 import { withStyles } from 'material-ui/styles/index';
-
-const styles = () => ({
-  card: {
-    textAlign: 'left',
-    maxWidth: 400,
-    margin: 20,
-  },
-  cardTitleContainer: {
-    display: 'flex',
-  },
-  cardTitle: {
-    flexGrow: 1,
-    marginBottom: 10,
-    fontSize: 19,
-    fontWeight: 400,
-  },
-  cardDistance: {
-    maxWidth: 70,
-    minWidth: 45,
-  },
-  cardDistanceIcon: {
-    verticalAlign: 'middle',
-    height: 19,
-    width: 19,
-    color: grey[500],
-  },
-  cardDistanceText: {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    fontSize: 14,
-    fontWeight: 400,
-    marginLeft: 2,
-    color: grey[600],
-  },
-  cardStarIcon: {
-    height: 16,
-    width: 16,
-    verticalAlign: 'middle',
-    color: amber[500],
-  },
-  cardStarText: {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    fontWeight: 400,
-    marginLeft: 5,
-  },
-  cardAbout: {
-    margin: [[10, 0, 10, 0]],
-  },
-  cardAddress: {
-    margin: [[10, 0, 10, 0]],
-  },
-  media: {
-    height: 194,
-  },
-});
+import listItemStyle from './listItemStyles';
 
 const showCardMedia = (item, classes) => {
   if (item.sourceType === 'facebook' && item.cover && item.cover.source) {
@@ -100,7 +44,12 @@ const showCardRating = (item, classes) => {
   if (item.rating) {
     return (
       <Fragment>
-        <Rating emptySymbol={<StarBorderIcon className={classes.cardStarIcon} />} fullSymbol={<StarIcon className={classes.cardStarIcon} />} initialRating={item.rating} readonly="true" />
+        <Rating
+          emptySymbol={<StarBorderIcon className={classes.cardStarIcon} />}
+          fullSymbol={<StarIcon className={classes.cardStarIcon} />}
+          initialRating={item.rating}
+          readonly={true}
+        />
         <Typography type="body1" className={classes.cardStarText}>{item.rating}</Typography>
       </Fragment>
     );
@@ -108,7 +57,31 @@ const showCardRating = (item, classes) => {
   return undefined;
 };
 
-const ListItemComponent = (props) => {
+const showCardContacts = (item, classes) => {
+  const link = item.contact.website || item.contact.link || item.contact.facebook;
+  if (item.contact.phone || link) {
+    return (
+      <CardActions>
+        {item.contact.phone &&
+          <Button
+            href={`tel://${item.contact.phone}`}
+            className={classes.cardButton}
+          >
+            {item.contact.phone}
+          </Button>
+        }
+        {link &&
+          <Button href={link} target="_blank" className={classes.cardButton}>
+            website
+          </Button>
+        }
+      </CardActions>
+    );
+  }
+  return undefined;
+};
+
+const ListItem = (props) => {
   const { classes, item } = props;
 
   let currentItem = item;
@@ -129,16 +102,17 @@ const ListItemComponent = (props) => {
           {showCardDistance(currentItem, classes)}
         </div>
         {showCardRating(currentItem, classes)}
-        <Typography className={classes.cardAbout}>{currentItem.about}</Typography>
-        <Divider />
+        <Typography className={classes.cardAbout}>{currentItem.about || 'test test test test test test test test test test test test test test test test test test'}</Typography>
+        <Divider className={classes.cardDivider} />
         <Typography className={classes.cardAddress}>{currentItem.location.address}</Typography>
       </CardContent>
+      {showCardContacts(currentItem, classes)}
     </Card>
   );
 };
 
-ListItemComponent.propTypes = {
+ListItem.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListItemComponent);
+export default withStyles(listItemStyle)(ListItem);

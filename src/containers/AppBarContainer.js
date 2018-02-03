@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import FilterList from 'material-ui-icons/FilterList';
 import ViewList from 'material-ui-icons/ViewList';
 import Dialog from 'material-ui/Dialog';
-import FilterForm from '../components/filter-form.component';
+import FilterForm from '../components/FilterForm';
 
 const styles = theme => ({
   root: {

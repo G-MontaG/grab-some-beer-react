@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles/index';
-import ListItemComponent from '../components/list-item.component';
+import ListItem from './ListItem';
 
 const styles = () => ({});
 
@@ -15,7 +15,7 @@ class ListContainer extends React.Component {
     return (
       <Fragment>
         {app.list.map(item => (
-          <ListItemComponent item={item} key={item.id} />
+          <ListItem item={item} key={item.id} />
         ))}
       </Fragment>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
-import GoogleMapComponent from '../components/google-map.component';
+import GoogleMapComponent from './GoogleMapComponent';
 
- class GoogleMapContainer extends React.PureComponent {
+class GoogleMapContainer extends React.PureComponent {
   state = {
     isMarkerShown: false,
   };
