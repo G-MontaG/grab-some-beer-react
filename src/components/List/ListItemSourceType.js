@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Button from 'material-ui/Button';
-import capitalizeFirstLetter from '../../services/helper';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import capitalizeFirstLetter from '../../services/helper';
 import foursquare from '../../assets/images/Powered-by-Foursquare-one-color-300.png';
 import google from '../../assets/images/powered_by_google_on_white_hdpi.png';
 import facebook from '../../assets/images/FB-f-Logo__blue_58.png';
@@ -55,7 +55,12 @@ const showCardSourceType = (context) => {
           open={Boolean(anchorEl)}
           onClose={context.handleMenuClose}
         >
-          {item.map((sourceItem, index) => <MenuItem key={sourceItem.id} onClick={e => context.handleMenuItemSelect(e, index)}>{capitalizeFirstLetter(sourceItem.sourceType)}</MenuItem>)}
+          {item.map((sourceItem, index) => (
+            <MenuItem key={sourceItem.id} onClick={e => context.handleMenuItemSelect(e, index)}>
+              {capitalizeFirstLetter(sourceItem.sourceType)}
+            </MenuItem>
+            ))
+          }
         </Menu>
       }
     </Fragment>
