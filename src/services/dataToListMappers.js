@@ -36,7 +36,7 @@ export function mapGooglePlacesResultsToList(item) {
     }))(),
     url: null,
     contact: {},
-    cover: photos[0],
+    cover: photos && photos[0] ? photos[0] : null,
     about: description,
     rating,
     sourceType: 'google',
