@@ -8,11 +8,15 @@ import red from 'material-ui/colors/red';
 import { connect } from 'react-redux';
 import { searchCreator } from '../redux/actions/api.actions';
 import { setUserLocationCreator } from '../redux/actions/user.actions';
-import './Home.css';
+import food from '../assets/images/food.png';
 
 const styles = () => ({
   root: {
     alignItems: 'center',
+    textAlign: 'center',
+    minHeight: '100vh',
+    backgroundImage: `url(${food})`,
+    margin: [[0, -8]],
   },
   buttonProgress: {
     color: red[500],
@@ -51,16 +55,14 @@ class Home extends React.Component {
     const { isLoad } = this.state;
 
     return (
-      <div className="HomeComponent">
-        <Grid container className={classes.root}>
-          <Grid item xs={12}>
-            <Button raised color="accent" onClick={this.handleStartSearch} disabled={isLoad}>
-              Grab some beer
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Button raised color="accent" onClick={this.handleStartSearch} disabled={isLoad}>
+            Grab some beer
               {isLoad && <CircularProgress className={classes.buttonProgress} size={24} />}
-            </Button>
-          </Grid>
+          </Button>
         </Grid>
-      </div>
+      </Grid>
     );
   }
 }
