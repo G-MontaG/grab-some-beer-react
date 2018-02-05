@@ -6,6 +6,7 @@ const listItemStyles = () => ({
     textAlign: 'left',
     maxWidth: 400,
     margin: 20,
+    position: 'relative',
   },
   cardTitleContainer: {
     display: 'flex',
@@ -15,12 +16,12 @@ const listItemStyles = () => ({
     marginBottom: 10,
     fontSize: 19,
     fontWeight: 400,
-    wordBreak: 'break-all',
+    wordBreak: 'break-word',
     paddingRight: 10,
   },
   cardDistance: {
     maxWidth: 70,
-    minWidth: 45,
+    minWidth: 60,
   },
   cardDistanceIcon: {
     verticalAlign: 'middle',
@@ -75,6 +76,39 @@ const listItemStyles = () => ({
   },
   cardMedia: {
     height: 200,
+  },
+  cardSourceType: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    background: '#fff',
+    padding: 3,
+    minHeight: 31,
+    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+  },
+  cardSourceTypeFoursquare: {
+    height: 25,
+    width: 150,
+  },
+  cardSourceTypeGoogle: {
+    height: 18,
+    width: 144,
+  },
+  cardSourceTypeFacebook: {
+    height: 30,
+    width: 30,
+  },
+  cardSourceTypeButton: {
+    background: '#fff',
+    '&:hover': {
+      background: '#fff',
+    },
+    padding: 3,
+    margin: [[-3, 0]],
+    minWidth: 35,
+    minHeight: 30,
   },
 });
 
