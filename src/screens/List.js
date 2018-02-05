@@ -15,13 +15,21 @@ const styles = theme => ({
     top: '50%',
     transform: 'translate(-50%, -50%)',
   },
-  root: {
+  listRoot: {
     boxSizing: 'border-box',
     padding: [[theme.spacing.unit, theme.spacing.unit * 2]],
     margin: [[0, 'auto']],
     minHeight: 'calc(100vh - 64px)',
     position: 'relative',
     paddingTop: 72,
+  },
+  mapRoot: {
+    boxSizing: 'border-box',
+    padding: 0,
+    margin: [[0, 'auto']],
+    minHeight: 'calc(100vh - 64px)',
+    position: 'relative',
+    paddingTop: 64,
   },
 });
 
@@ -42,13 +50,7 @@ class List extends React.Component {
       return prevState.toggleButton === 'map' ? 'list' : 'map';
     }
 
-    this.setState((prevState) => {
-      Object.assign(
-        {},
-        this.state,
-        { toggleButton: toggleButton(prevState) },
-      );
-    });
+    this.setState(prevState => ({ toggleButton: toggleButton(prevState) }));
   };
 
   renderList() {
@@ -74,8 +76,8 @@ class List extends React.Component {
     return (
       <div>
         <AppBarContainer handleToggleButton={this.handleToggleButton} />
-        <div className={classes.root} >
-              {this.renderList(classes, searchResults, toggleButton)}
+        <div className={toggleButton === 'map' ? classes.mapRoot : classes.listRoot} >
+          {this.renderList(classes, searchResults, toggleButton)}
         </div>
       </div>
     );
