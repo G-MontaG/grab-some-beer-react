@@ -35,7 +35,7 @@ const styles = theme => ({
 
 class List extends React.Component {
   state = {
-    toggleButton: 'list',
+    toggleButton: 'map',
   };
 
   componentWillMount() {

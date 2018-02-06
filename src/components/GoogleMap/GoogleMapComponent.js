@@ -1,28 +1,30 @@
 import React from 'react';
-import { GoogleMap, Marker, withGoogleMap, withScriptjs } from 'react-google-maps';
+import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
+import MarkerItem from './MarkerItem';
 
 const GoogleMapComponent = withScriptjs(withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={12}
+    defaultZoom={16}
     defaultCenter={{
-      lat: -34.397,
-      lng: 150.644,
+      lat: props.user.position.latitude,
+      lng: props.user.position.longitude,
     }}
-    options={{
+    defaultOptions={{
       zoomControl: true,
       fullscreenControl: false,
       streetViewControl: false,
       mapTypeControl: false,
+      minZoom: 14,
+      maxZoom: 20,
     }}
   >
-    {props.isMarkerShown &&
-    <Marker
-      position={{
-        lat: -34.397,
-        lng: 150.644,
-      }}
-      onClick={props.onMarkerClick}
-    />}
+    {props.list.map((item, index) => (
+      <MarkerItem
+        key={item.id || item[0].id}
+        item={item}
+        index={index}
+      />
+    ))}
   </GoogleMap>
 )));
 

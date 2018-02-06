@@ -1,33 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withStyles } from 'material-ui/styles/index';
 import GoogleMapComponent from './GoogleMapComponent';
 
+const styles = () => ({});
+
 class GoogleMapContainer extends React.PureComponent {
-  state = {
-    isMarkerShown: false,
-  };
-
-  componentDidMount() {
-    this.delayedShowMarker();
-  }
-
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({ isMarkerShown: true });
-    }, 3000);
-  };
-
-  handleMarkerClick = () => {
-    console.log('handle');
-    this.setState({ isMarkerShown: false });
-    this.delayedShowMarker();
-  };
-
   render() {
+    const { app, user } = this.props;
+
     return (
       <GoogleMapComponent
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+        user={user}
+        list={app.list}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDM0zOC8J5eV6iz2J_6pNIAYN7sTZ5pFvE"
         loadingElement={<div style={{ height: '100%' }} />}
         containerElement={<div style={{ height: '95.2vh' }} />}
         mapElement={<div style={{ height: '100%' }} />}
@@ -36,4 +22,8 @@ class GoogleMapContainer extends React.PureComponent {
   }
 }
 
-export default GoogleMapContainer;
+const mapStateToProps = ({ app, user }) => ({ app, user });
+
+const GoogleMapContainerWithStyles = withStyles(styles)(GoogleMapContainer);
+
+export default connect(mapStateToProps)(GoogleMapContainerWithStyles);
