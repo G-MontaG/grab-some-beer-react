@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardMedia } from 'material-ui/Card';
-import Beer from '../../assets/images/beer.jpg';
+import Beer from '../../assets/images/pexels-photo-260922.jpeg';
 
 const showCardMedia = (item, classes) => {
   if (item.sourceType === 'facebook' && item.cover && item.cover.source) {
