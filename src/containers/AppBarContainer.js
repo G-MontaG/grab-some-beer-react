@@ -13,6 +13,7 @@ import FilterForm from '../components/FilterForm';
 const styles = theme => ({
   appBar: {
     width: '100%',
+    backgroundColor: '#D9663F',
   },
   toolbar: {
     'justify-content': 'space-between',
@@ -47,7 +48,7 @@ class AppBarContainer extends React.Component {
     const { classes, handleToggleButton } = this.props;
 
     return (
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Grid container>
             <Grid item xs={2}>
