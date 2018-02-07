@@ -41,11 +41,11 @@ class ListItem extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, isOnMap } = this.props;
     const { currentItem } = this.state;
 
     return (
-      <Card className={classes.card}>
+      <Card className={isOnMap ? classes.cardOnMap : classes.card}>
         {showCardSourceType(this)}
         {showCardMedia(currentItem, classes)}
         <CardContent>

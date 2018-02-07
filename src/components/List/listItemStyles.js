@@ -5,8 +5,14 @@ const listItemStyles = () => ({
   card: {
     textAlign: 'left',
     maxWidth: 400,
-    margin: 20,
+    margin: 10,
     position: 'relative',
+  },
+  cardOnMap: {
+    textAlign: 'left',
+    maxWidth: 400,
+    position: 'relative',
+    margin: 10,
   },
   cardTitleContainer: {
     display: 'flex',
