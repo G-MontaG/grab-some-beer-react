@@ -25,6 +25,9 @@ class MarkerItem extends React.Component {
 
   onMarkerClick = () => {
     selectListItemCreator(this.props.index);
+    setTimeout(() => {
+      selectListItemCreator(this.props.index);
+    }, 3500);
   };
 
   render() {
