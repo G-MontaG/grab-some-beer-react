@@ -1,33 +1,40 @@
 /* global google */
 import React from 'react';
 import { Marker } from 'react-google-maps';
+import { selectListItemCreator } from '../../redux/actions/app.actions';
 
 class MarkerItem extends React.Component {
   constructor(props) {
     super(props);
     const { item } = props;
     if (!Array.isArray(item)) {
-      this.state = { currentItem: item, isArray: false, isActive: null };
+      this.state = { currentItem: item, isArray: false };
     } else {
-      this.state = { currentItem: item[0], isArray: true, isActive: null };
+      this.state = { currentItem: item[0], isArray: true };
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { item } = nextProps;
+    if (!Array.isArray(item)) {
+      this.setState({ currentItem: item, isArray: false });
+    } else {
+      this.setState({ currentItem: item[0], isArray: true });
     }
   }
 
   onMarkerClick = () => {
-    if (this.state.isActive) {
-      this.setState({ isActive: null });
-    } else {
-      this.setState({ isActive: google.maps.Animation.BOUNCE });
-    }
+    selectListItemCreator(this.props.index);
   };
 
   render() {
     const { classes, index } = this.props;
-    const { currentItem, isActive } = this.state;
+    const { currentItem } = this.state;
+    console.log(currentItem.selected);
 
     return (
       <Marker
-        animation={isActive}
+        animation={currentItem.selected ? google.maps.Animation.BOUNCE : null}
         defaultPosition={{
           lat: currentItem.location.lat,
           lng: currentItem.location.lng,
