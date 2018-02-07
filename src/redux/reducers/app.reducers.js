@@ -10,7 +10,7 @@ export default function appReducers(state = {}, action) {
           return { ...item, selected: index === action.payload && !item.selected };
         }
         if (index !== action.payload) {
-          return [...item];
+          return [{ ...item[0], selected: false }, ...item.slice(1, item.length)];
         }
         return [{ ...item[0], selected: !item[0].selected }, ...item.slice(1, item.length)];
       });

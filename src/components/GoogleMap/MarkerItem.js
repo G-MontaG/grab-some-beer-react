@@ -30,7 +30,6 @@ class MarkerItem extends React.Component {
   render() {
     const { classes, index } = this.props;
     const { currentItem } = this.state;
-    console.log(currentItem.selected);
 
     return (
       <Marker
