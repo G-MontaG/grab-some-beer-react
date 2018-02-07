@@ -16,7 +16,7 @@ const styles = theme => ({
     backgroundColor: '#D9663F',
   },
   toolbar: {
-    'justify-content': 'space-between',
+    justifyContent: 'space-between',
   },
   toggleButton: {
     float: 'right',

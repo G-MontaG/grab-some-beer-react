@@ -52,6 +52,22 @@ const styles = () => ({
   button: {
     marginTop: 20,
     minHeight: 40,
+    '@media (min-width: 1920px)': {
+      fontSize: 25,
+      minHeight: 51,
+    },
+    '@media (min-width: 1366px) and (max-width: 1919px)': {
+      fontSize: 23,
+      minHeight: 49,
+    },
+    '@media (min-width: 1025px) and (max-width: 1365px)': {
+      fontSize: 19,
+      minHeight: 45,
+    },
+    '@media (min-width: 768px) and (max-width: 1024px)': {
+      fontSize: 18,
+      minHeight: 43,
+    },
   },
   buttonProgress: {
     color: '#fff',
@@ -96,7 +112,7 @@ class Home extends React.Component {
             <Typography className={classes.title}>GRAB<br />SOME<br />BEER</Typography>
             <Button raised color="accent" size="large" className={classes.button} onClick={this.handleStartSearch} disabled={isLoad}>
               Grab some beer
-              {isLoad && <CircularProgress className={classes.buttonProgress} size={24} />}
+              {isLoad && <CircularProgress className={classes.buttonProgress} size={25} />}
             </Button>
           </div>
         </Grid>
