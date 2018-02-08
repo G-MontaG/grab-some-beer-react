@@ -14,13 +14,13 @@ const styles = () => ({
     position: 'absolute',
     left: 25,
     bottom: 25,
-    maxWidth: 400,
-    minWidth: 300,
+    width: 400,
     zIndex: 2,
     '@media (max-width: 768px)': {
       left: '50%',
       bottom: 30,
       transform: 'translateX(-50%)',
+      width: 300,
     },
   },
   mapFrame: {
