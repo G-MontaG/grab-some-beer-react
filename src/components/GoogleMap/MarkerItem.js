@@ -8,9 +8,9 @@ class MarkerItem extends React.Component {
     super(props);
     const { item } = props;
     if (!Array.isArray(item)) {
-      this.state = { currentItem: item, isArray: false };
+      this.state = { currentItem: item, isArray: false, isShowAnimation: false };
     } else {
-      this.state = { currentItem: item[0], isArray: true };
+      this.state = { currentItem: item[0], isArray: true, isShowAnimation: false };
     }
   }
 
@@ -24,19 +24,20 @@ class MarkerItem extends React.Component {
   }
 
   onMarkerClick = () => {
+    this.setState({ isShowAnimation: true });
     selectListItemCreator(this.props.index);
     setTimeout(() => {
-      selectListItemCreator(this.props.index);
+      this.setState({ isShowAnimation: false });
     }, 3500);
   };
 
   render() {
     const { classes, index } = this.props;
-    const { currentItem } = this.state;
+    const { currentItem, isShowAnimation } = this.state;
 
     return (
       <Marker
-        animation={currentItem.selected ? google.maps.Animation.BOUNCE : null}
+        animation={currentItem.selected && isShowAnimation ? google.maps.Animation.BOUNCE : null}
         defaultPosition={{
           lat: currentItem.location.lat,
           lng: currentItem.location.lng,

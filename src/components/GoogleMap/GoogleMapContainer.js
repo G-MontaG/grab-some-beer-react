@@ -12,34 +12,44 @@ const styles = () => ({
   },
   listFrame: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    width: 400,
-    overflow: 'scroll',
-    padding: 3,
-    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    left: 25,
+    bottom: 25,
+    maxWidth: 400,
+    minWidth: 300,
     zIndex: 2,
+    '@media (max-width: 768px)': {
+      left: '50%',
+      bottom: 30,
+      transform: 'translateX(-50%)',
+    },
   },
   mapFrame: {
     position: 'absolute',
     top: 0,
     right: 0,
-    left: 400,
+    left: 0,
     bottom: 0,
   },
 });
 
 class GoogleMapContainer extends React.PureComponent {
+  renderSelectedListItem() {
+    const selectedItem = this.props.app.list.find((item) => {
+      if (!Array.isArray(item)) {
+        return item.selected;
+      }
+      return item[0].selected;
+    });
+    return selectedItem ? <ListItem key={selectedItem.id || selectedItem[0].id} item={selectedItem} isOnMap="true" /> : undefined;
+  }
+
   render() {
     const { app, user, classes } = this.props;
 
     return (
       <div className={classes.root}>
         <div className={classes.listFrame}>
-          {app.list.map(item => (
-            <ListItem key={item.id || item[0].id} item={item} isOnMap="true" />
-          ))}
+          {this.renderSelectedListItem()}
         </div>
         <GoogleMapComponent
           className={classes.mapFrame}
@@ -47,7 +57,7 @@ class GoogleMapContainer extends React.PureComponent {
           list={app.list}
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDM0zOC8J5eV6iz2J_6pNIAYN7sTZ5pFvE"
           loadingElement={<div className={classes.mapFrame} />}
-          containerElement={<div />}
+          containerElement={<div className={classes.mapFrame} />}
           mapElement={<div className={classes.mapFrame} />}
         />
       </div>
