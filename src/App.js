@@ -13,6 +13,12 @@ import List from './screens/List';
 
 const theme = createMuiTheme({
   palette: {
+    primary: {
+      main: '#fff',
+      dark: '#fff',
+      light: '#fff',
+      contrastText: '#fff',
+    },
     secondary: { main: '#fff' },
   },
 });
