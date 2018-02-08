@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from 'material-ui/Grid';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles/index';
 import GoogleMapComponent from './GoogleMapComponent';
@@ -55,7 +54,7 @@ class GoogleMapContainer extends React.PureComponent {
           className={classes.mapFrame}
           user={user}
           list={app.list}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDM0zOC8J5eV6iz2J_6pNIAYN7sTZ5pFvE"
+          googleMapURL="https://lit-headland-70957.herokuapp.com/api/google-places-map"
           loadingElement={<div className={classes.mapFrame} />}
           containerElement={<div className={classes.mapFrame} />}
           mapElement={<div className={classes.mapFrame} />}

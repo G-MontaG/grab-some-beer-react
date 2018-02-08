@@ -36,26 +36,22 @@ const styles = () => ({
   },
 });
 
-class FilterForm extends React.Component {
-  render() {
-    const { classes, handleSubmit, handleFilterClose } = this.props;
-
-    return (
-      <form noValidate onSubmit={handleSubmit}>
-        <Typography className={classes.queryFieldLabel}>Search: </Typography>
-        <Field
-          className={classes.queryField}
-          name="query"
-          component={renderTextField}
-          autoFocus
-          margin="dense"
-          id="query"
-          type="text"
-          fullWidth
-        />
-      </form>
-    );
-  }
+function FilterForm({ classes, handleSubmit, handleFilterClose }) {
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      <Typography className={classes.queryFieldLabel}>Search: </Typography>
+      <Field
+        className={classes.queryField}
+        name="query"
+        component={renderTextField}
+        autoFocus
+        margin="dense"
+        id="query"
+        type="text"
+        fullWidth
+      />
+    </form>
+  );
 }
 
 FilterForm.propTypes = {
