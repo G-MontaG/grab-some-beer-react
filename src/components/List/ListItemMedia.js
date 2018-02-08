@@ -12,7 +12,7 @@ const showCardMedia = (item, classes) => {
   } else if (item.sourceType === 'google') {
     return (<CardMedia
       className={classes.cardMedia}
-      image={`https://lit-headland-70957.herokuapp.com/api/google-places-photo?photoreference=${item.cover.photo_reference}`}
+      image={`https://grab-some-beer-api.herokuapp.com/api/google-places-photo?photoreference=${item.cover.photo_reference}`}
       title={item.name}
     />);
   }

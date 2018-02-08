@@ -54,7 +54,7 @@ class GoogleMapContainer extends React.PureComponent {
           className={classes.mapFrame}
           user={user}
           list={app.list}
-          googleMapURL="https://lit-headland-70957.herokuapp.com/api/google-places-map"
+          googleMapURL="https://grab-some-beer-api.herokuapp.com/api/google-places-map"
           loadingElement={<div className={classes.mapFrame} />}
           containerElement={<div className={classes.mapFrame} />}
           mapElement={<div className={classes.mapFrame} />}

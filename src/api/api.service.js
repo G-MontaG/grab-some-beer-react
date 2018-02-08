@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://lit-headland-70957.herokuapp.com/api/',
+  baseURL: 'https://grab-some-beer-api.herokuapp.com/api/',
   timeout: 20000,
 });
 
