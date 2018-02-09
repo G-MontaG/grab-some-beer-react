@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles/index';
+import CloseIcon from 'material-ui-icons/Close';
 import listItemStyle from './listItemStyles';
 import showCardMedia from './ListItemMedia';
 import showCardDistance from './ListItemDistance';
@@ -11,6 +13,7 @@ import showCardRating from './ListItemRating';
 import showCardContacts from './ListItemContacts';
 import showCardSourceType from './ListItemSourceType';
 import capitalizeFirstLetter from '../../services/helper';
+import { selectListItemCreator } from '../../redux/actions/app.actions';
 
 class ListItem extends React.Component {
   constructor(props) {
@@ -40,6 +43,14 @@ class ListItem extends React.Component {
     this.setState({ anchorEl: null, currentItem: item[selectedItemIndex] });
   };
 
+  handleClose = () => {
+    selectListItemCreator(this.props.index);
+  }
+
+  showCloseButton() {
+    return (<Button className={this.props.classes.cardCloseButton} onClick={this.handleClose}><CloseIcon /></Button>);
+  }
+
   render() {
     const { classes, isOnMap } = this.props;
     const { currentItem } = this.state;
@@ -67,6 +78,7 @@ class ListItem extends React.Component {
           <Typography className={classes.cardAddress}>{currentItem.location.address}</Typography>
         </CardContent>
         {showCardContacts(currentItem, classes)}
+        {isOnMap && this.showCloseButton()}
       </Card>
     );
   }
@@ -74,6 +86,8 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   classes: PropTypes.object.isRequired,
+  isOnMap: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default withStyles(listItemStyle)(ListItem);

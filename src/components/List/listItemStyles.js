@@ -116,6 +116,12 @@ const listItemStyles = () => ({
     minWidth: 35,
     minHeight: 30,
   },
+  cardCloseButton: {
+    position: 'absolute',
+    top: '-40px',
+    left: 0,
+    minWidth: 40,
+  },
 });
 
 export default listItemStyles;

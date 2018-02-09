@@ -44,7 +44,6 @@ function FilterForm({ classes, handleSubmit, handleFilterClose }) {
         className={classes.queryField}
         name="query"
         component={renderTextField}
-        autoFocus
         margin="dense"
         id="query"
         type="text"

@@ -15,9 +15,9 @@ class ListContainer extends React.Component {
 
     return (
       <Grid container>
-        {app.list.map(item => (
+        {app.list.map((item, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={item.id || item[0].id}>
-            <ListItem item={item} />
+            <ListItem item={item} index={index} isOnMap="false" />
           </Grid>
         ))}
       </Grid>
