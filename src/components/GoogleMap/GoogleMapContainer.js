@@ -39,7 +39,7 @@ class GoogleMapContainer extends React.PureComponent {
       }
       return item[0].selected;
     });
-    return selectedItem ? <ListItem key={selectedItem.id || selectedItem[0].id} item={selectedItem} isOnMap="true" /> : undefined;
+    return selectedItem ? <ListItem key={selectedItem.id || selectedItem[0].id} item={selectedItem} isOnMap={true} /> : undefined;
   }
 
   render() {

@@ -87,7 +87,7 @@ class ListItem extends React.Component {
 ListItem.propTypes = {
   classes: PropTypes.object.isRequired,
   isOnMap: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
 };
 
 export default withStyles(listItemStyle)(ListItem);
