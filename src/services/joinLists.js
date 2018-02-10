@@ -115,5 +115,5 @@ export default function joinLists(lists) {
     }
     return undefined;
   });
-  return mixArrays(resultOfJoin, copyFacebookSearchResults);
+  return [...resultOfJoin, ...copyFacebookSearchResults];
 }
