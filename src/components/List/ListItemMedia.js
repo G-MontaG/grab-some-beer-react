@@ -9,7 +9,7 @@ const showCardMedia = (item, classes) => {
       image={item.cover.source}
       title={item.name}
     />);
-  } else if (item.sourceType === 'google') {
+  } else if (item.sourceType === 'google' && item.cover && item.cover.photo_reference) {
     return (<CardMedia
       className={classes.cardMedia}
       image={`https://lit-headland-70957.herokuapp.com/api/google-places-photo?photoreference=${item.cover.photo_reference}`}
