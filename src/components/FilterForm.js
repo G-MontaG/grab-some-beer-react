@@ -1,78 +1,65 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
-import { FormControlLabel, FormGroup } from 'material-ui/Form';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles/index';
 import { Field, reduxForm } from 'redux-form';
+import Typography from 'material-ui/Typography/Typography';
 import renderTextField from './CustomTextField';
-import renderCheckbox from './CustomCheckbox';
 
-const styles = () => ({});
+const styles = () => ({
+  queryField: {
+    display: 'inline-block',
+    maxWidth: 400,
+    fontWeight: 500,
+    '& > div > input': {
+      color: '#fff',
+      fontSize: 18,
+      '@media (max-width: 768px)': {
+        fontSize: 14,
+      },
+    },
+    '& > div': {
+      color: '#fff',
+    },
+    '& > div:before': {
+      backgroundColor: 'rgba(255, 255, 255, 0.42) !important',
+    },
+  },
+  queryFieldLabel: {
+    display: 'inline-block',
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 600,
+    marginRight: 15,
+    '@media (max-width: 768px)': {
+      fontSize: 14,
+    },
+  },
+});
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.query) {
-    errors.query = 'Required';
-  } else if (values.query.length > 15) {
-    errors.query = 'Must be 15 characters or less';
-  }
-  return errors;
-};
-
-class FilterForm extends React.Component {
-  state = {
-    selectedOption: '',
-  };
-
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
-    console.log(`Selected: ${selectedOption.label}`);
-  };
-
-  render() {
-    const { handleSubmit, handleFilterClose } = this.props;
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <DialogTitle id="form-dialog-title">Change filters</DialogTitle>
-        <DialogContent>
-          <Field
-            name="query"
-            component={renderTextField}
-            autoFocus
-            margin="dense"
-            id="query"
-            label="Search query"
-            type="text"
-            fullWidth
-          />
-          <FormGroup row>
-            <FormControlLabel
-              control={
-                <Field name="employed" component={renderCheckbox} />
-              }
-              label="Option A"
-            />
-          </FormGroup>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleFilterClose} color="primary">
-            Cancel
-          </Button>
-          <Button type="submit" color="primary">
-            Apply
-          </Button>
-        </DialogActions>
-      </form>
-    );
-  }
+function FilterForm({ classes, handleSubmit, handleFilterClose }) {
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      <Typography className={classes.queryFieldLabel}>Search: </Typography>
+      <Field
+        className={classes.queryField}
+        name="query"
+        component={renderTextField}
+        margin="dense"
+        id="query"
+        type="text"
+        fullWidth
+      />
+    </form>
+  );
 }
+
+FilterForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const FilterFormWithStyles = withStyles(styles)(FilterForm);
 FilterForm = reduxForm({
-  // a unique name for the form
   form: 'filters',
-  validate,
 })(FilterFormWithStyles);
 
 export default FilterForm;

@@ -16,6 +16,7 @@ export function mapFoursquareResultsToList(item) {
     about: null,
     rating: null,
     sourceType: 'foursquare',
+    selected: false,
   };
 }
 
@@ -40,6 +41,7 @@ export function mapGooglePlacesResultsToList(item) {
     about: description,
     rating,
     sourceType: 'google',
+    selected: false,
   };
 }
 
@@ -64,5 +66,6 @@ export function mapFacebookPlacesResultsToList(item) {
     about,
     rating: overall_star_rating,
     sourceType: 'facebook',
+    selected: false,
   };
 }

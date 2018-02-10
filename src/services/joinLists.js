@@ -65,12 +65,28 @@ function getEqualityRating(item1, item2) {
   return equalityRating;
 }
 
+function mixArrays(array1, array2) {
+  const newArray = [];
+  const largeArray = array1.length > array2.length ? array1 : array2;
+  const smallArray = array1.length > array2.length ? array2 : array1;
+
+  largeArray.map((lgItem, index) => {
+    newArray.push(lgItem);
+    if (smallArray[index]) {
+      newArray.push(smallArray[index]);
+    }
+    return undefined;
+  });
+
+  return newArray;
+}
+
 export default function joinLists(lists) {
   let resultOfJoin = [];
 
   let copyGoogleSearchResults = [...lists.googleSearchResults];
   let copyFacebookSearchResults = [...lists.facebookSearchResults];
-  
+
   lists.foursquareSearchResults.map((foursquareItem) => {
     const foundItemIndex = copyGoogleSearchResults.findIndex(googleItem => getEqualityRating(foursquareItem, googleItem) > minEqualityRating);
     if (foundItemIndex > -1 && copyGoogleSearchResults[foundItemIndex]) {
@@ -81,7 +97,7 @@ export default function joinLists(lists) {
     resultOfJoin.push(foursquareItem);
     return undefined;
   });
-  resultOfJoin = [...resultOfJoin, ...copyGoogleSearchResults];
+  resultOfJoin = mixArrays(resultOfJoin, copyGoogleSearchResults);
 
   resultOfJoin.map((resultsItem, resultsItemIndex) => {
     let foundItemIndex = null;
@@ -99,5 +115,5 @@ export default function joinLists(lists) {
     }
     return undefined;
   });
-  return [...resultOfJoin, ...copyFacebookSearchResults];
+  return mixArrays(resultOfJoin, copyFacebookSearchResults);
 }

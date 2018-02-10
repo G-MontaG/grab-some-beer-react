@@ -5,8 +5,14 @@ const listItemStyles = () => ({
   card: {
     textAlign: 'left',
     maxWidth: 400,
-    margin: 20,
+    margin: 10,
     position: 'relative',
+  },
+  cardOnMap: {
+    textAlign: 'left',
+    maxWidth: 400,
+    position: 'relative',
+    margin: 10,
   },
   cardTitleContainer: {
     display: 'flex',
@@ -109,6 +115,12 @@ const listItemStyles = () => ({
     margin: [[-3, 0]],
     minWidth: 35,
     minHeight: 30,
+  },
+  cardCloseButton: {
+    position: 'absolute',
+    top: '-40px',
+    left: 0,
+    minWidth: 40,
   },
 });
 

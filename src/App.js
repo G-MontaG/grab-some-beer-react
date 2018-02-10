@@ -1,14 +1,27 @@
 import 'react-select/dist/react-select.css';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Reboot from 'material-ui/Reboot';
 import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
 import Snackbar from 'material-ui/Snackbar';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import './App.css';
 import Home from './screens/Home';
 import List from './screens/List';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fff',
+      dark: '#fff',
+      light: '#fff',
+      contrastText: '#fff',
+    },
+    secondary: { main: '#fff' },
+  },
+});
 
 class App extends React.Component {
   state = {
@@ -33,7 +46,7 @@ class App extends React.Component {
     const { error } = this.props;
     const { snackbarOpen } = this.state;
     return (
-      <Fragment>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
           <Reboot />
           <BrowserRouter>
@@ -56,7 +69,7 @@ class App extends React.Component {
           }}
           message={error}
         />
-      </Fragment>
+      </MuiThemeProvider>
     );
   }
 }
