@@ -9,9 +9,7 @@ export const searchFoursquareAction = payload => ({
   payload,
 });
 
-export const searchFoursquareCreator = payload => store.dispatch(
-  searchFoursquareAction(payload)
-);
+export const searchFoursquareCreator = payload => store.dispatch(searchFoursquareAction(payload));
 
 export const SEARCH_GOOGLE_PLACES = 'SEARCH_GOOGLE_PLACES';
 export const SEARCH_GOOGLE_PLACES_SUCCEEDED = 'SEARCH_GOOGLE_PLACES_SUCCEEDED';
@@ -22,9 +20,7 @@ export const searchGooglePlacesAction = payload => ({
   payload,
 });
 
-export const searchGooglePlacesCreator = payload => store.dispatch(
-  searchGooglePlacesAction(payload)
-);
+export const searchGooglePlacesCreator = payload => store.dispatch(searchGooglePlacesAction(payload));
 
 export const SEARCH_FACEBOOK_PLACES = 'SEARCH_FACEBOOK_PLACES';
 export const SEARCH_FACEBOOK_PLACES_SUCCEEDED = 'SEARCH_FACEBOOK_PLACES_SUCCEEDED';
@@ -35,9 +31,7 @@ export const searchFacebookPlacesAction = payload => ({
   payload,
 });
 
-export const searchFacebookPlacesCreator = payload => store.dispatch(
-  searchFacebookPlacesAction(payload)
-);
+export const searchFacebookPlacesCreator = payload => store.dispatch(searchFacebookPlacesAction(payload));
 
 export const SEARCH_START = 'SEARCH_START';
 export const SEARCH_END = 'SEARCH_END';
@@ -48,6 +42,4 @@ export const searchStartAction = payload => ({
   payload,
 });
 
-export const searchCreator = payload => store.dispatch(
-  searchStartAction(payload)
-);
+export const searchCreator = payload => store.dispatch(searchStartAction(payload));

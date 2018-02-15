@@ -6,7 +6,7 @@ import {
   SEARCH_GOOGLE_PLACES_SUCCEEDED, SEARCH_START,
 } from '../actions/api.actions';
 
-export default function apiReducers(state = { isLoading: false }, action) {
+const apiReducers = (state = { isLoading: false }, action) => {
   switch (action.type) {
     case SEARCH_START:
       return { ...state, isLoading: true };
@@ -23,4 +23,6 @@ export default function apiReducers(state = { isLoading: false }, action) {
     default:
       return state;
   }
-}
+};
+
+export default apiReducers;

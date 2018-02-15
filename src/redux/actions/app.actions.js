@@ -10,15 +10,11 @@ export const joinListsAction = payload => ({
   payload,
 });
 
-export const joinListsCreator = payload => store.dispatch(
-  joinListsAction(payload)
-);
+export const joinListsCreator = payload => store.dispatch(joinListsAction(payload));
 
 export const selectListItemAction = payload => ({
   type: SELECT_LIST_ITEM,
   payload,
 });
 
-export const selectListItemCreator = payload => store.dispatch(
-  selectListItemAction(payload)
-);
+export const selectListItemCreator = payload => store.dispatch(selectListItemAction(payload));
