@@ -13,7 +13,6 @@ const showCardSourceType = (context) => {
 
   return (
     <Fragment>
-
       <div className={classes.cardSourceType}>
         {currentItem.sourceType === 'foursquare' &&
           <img
