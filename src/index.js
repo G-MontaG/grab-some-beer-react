@@ -10,8 +10,8 @@ import registerServiceWorker from './registerServiceWorker';
 import store from './redux/store';
 import App from './App';
 
-const jss = create({ plugins: [...jssPreset().plugins, jssExtend()] });
-const generateClassName = createGenerateClassName();
+export const jss = create({ plugins: [...jssPreset().plugins, jssExtend()] });
+export const generateClassName = createGenerateClassName();
 
 ReactDOM.render(<JssProvider jss={jss} generateClassName={generateClassName}><Provider store={store}><App /></Provider></JssProvider>, document.getElementById('root'));
 registerServiceWorker();
