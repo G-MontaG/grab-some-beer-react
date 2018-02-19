@@ -21,6 +21,7 @@ import store from '../store';
 export function* searchFoursquareMiddleware(action) {
   try {
     const response = yield call(searchFoursquareRequest, action.payload);
+    console.log(response);
     if (response.status === 200) {
       const payload = response.data.response.venues.map(mapFoursquareResultsToList);
       yield put({
