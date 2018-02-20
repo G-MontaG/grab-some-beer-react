@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { put, call, all } from 'redux-saga/effects';
 import { cloneableGenerator } from 'redux-saga/utils';
-import { searchCreator, SEARCH_ERROR, SEARCH_FOURSQUARE_SUCCEEDED } from '../actions/api.actions';
+import { searchCreator, SEARCH_ERROR } from '../actions/api.actions';
 import { searchMiddleware, searchFoursquareMiddleware, searchGooglePlacesMiddleware, searchFacebookPlacesMiddleware } from './api.middlewares';
 import { JOIN_LISTS_START } from '../actions/app.actions';
 import store from '../store';
